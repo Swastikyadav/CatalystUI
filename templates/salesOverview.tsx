@@ -9,6 +9,12 @@ import {
   AvatarImage,
   AvatarFallback,
 } from "@/components/ui/avatar";
+import {
+  PopoverRoot,
+  PopoverTrigger,
+  PopoverPortal,
+  PopoverContent,
+} from "@/components/ui/popover";
 import Link from "next/link";
 import {
   BellIcon,
@@ -26,7 +32,6 @@ import {
   UserIcon,
   UsersIcon,
 } from "lucide-react";
-import { Popover } from "radix-ui";
 import { cx } from "@/lib/utils";
 
 const navLinks = {
@@ -84,23 +89,23 @@ function SalesOverview() {
             <UserIcon width={18} className="cursor-pointer" />
             <BellIcon width={18} className="cursor-pointer" />
             <div>
-              <Popover.Root>
-                <Popover.Trigger asChild>
+              <PopoverRoot>
+                <PopoverTrigger asChild>
                   <AvatarRoot>
                     <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44374494" />
                     <AvatarFallback>SW</AvatarFallback>
                   </AvatarRoot>
-                </Popover.Trigger>
-                <Popover.Portal>
-                  <Popover.Content
+                </PopoverTrigger>
+                <PopoverPortal>
+                  <PopoverContent
                     className="mr-4"
                     autoFocus={false}
                     sideOffset={10}
                   >
                     <ProfilePopoverContent />
-                  </Popover.Content>
-                </Popover.Portal>
-              </Popover.Root>
+                  </PopoverContent>
+                </PopoverPortal>
+              </PopoverRoot>
             </div>
           </span>
         </header>
