@@ -16,13 +16,13 @@ function Root({
     <>
       {open && (
         <aside
-          {...props}
           className={cx(
             // base
             "absolute md:relative top-0 left-0 w-3xs h-screen border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#090E1A] p-6",
             // from Sidebar.Root
             className
           )}
+          {...props}
         >
           {children}
         </aside>
@@ -35,6 +35,7 @@ function Title({
   onClose,
   className,
   children,
+  ...props
 }: {
   onClose: () => void;
   className?: string;
@@ -45,10 +46,11 @@ function Title({
       <nav
         className={cx(
           // base
-          "flex items-center justify-between font-bold text-gray-800 dark:text-gray-50",
+          "flex items-center justify-between font-bold text-gray-700 dark:text-gray-50",
           // from Sidebar.Title
           className
         )}
+        {...props}
       >
         <span className="flex items-center gap-2">{children}</span>
         <XIcon onClick={onClose} className="block md:hidden" />
@@ -60,6 +62,7 @@ function Title({
 function Description({
   className,
   children,
+  ...props
 }: {
   className?: string;
   children: ReactNode;
@@ -69,10 +72,11 @@ function Description({
       <div
         className={cx(
           // base
-          "my-6 flex flex-col gap-4 text-gray-500 dark:text-gray-400 text-sm",
+          "my-8 flex flex-col gap-4 text-gray-500 dark:text-gray-400 text-sm",
           // from Sidebar.Description
           className
         )}
+        {...props}
       >
         {children}
       </div>
@@ -83,6 +87,7 @@ function Description({
 function Footer({
   className,
   children,
+  ...props
 }: {
   className: string;
   children: ReactNode;
@@ -93,6 +98,7 @@ function Footer({
         // from Sidebar.Footer
         className
       )}
+      {...props}
     >
       {children}
     </footer>
