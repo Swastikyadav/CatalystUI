@@ -72,8 +72,8 @@ function SalesOverview() {
           ))}
         </Sidebar.Description>
       </Sidebar.Root>
-      {/* <span onClick={() => setOpen((ps) => !ps)}>toggle sidebar</span> */}
-      <main className="w-full bg-white dark:bg-[#090E1A]">
+
+      <main className="w-full min-h-screen bg-white dark:bg-[#090E1A]">
         <header className="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 text-gray-800 dark:text-gray-50 p-6">
           <PanelLeftIcon
             width={18}

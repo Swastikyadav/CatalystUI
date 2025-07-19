@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 
 import { Switch as SwitchPrimitive } from "radix-ui";
 import { cx } from "@/lib/utils";
@@ -7,6 +9,14 @@ const SwitchRoot = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>
 >(({ className, children, ...props }, forwardedRef) => {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("mode") === "dark") {
+      setIsDark(true);
+    }
+  }, []);
+
   return (
     <SwitchPrimitive.Root
       ref={forwardedRef}
@@ -18,7 +28,18 @@ const SwitchRoot = React.forwardRef<
         // className prop
         className
       )}
+      checked={isDark}
       autoFocus={false}
+      onCheckedChange={(checked) => {
+        setIsDark(checked);
+        if (checked) {
+          localStorage.setItem("mode", "dark");
+          document.documentElement.classList.add("dark");
+        } else {
+          localStorage.setItem("mode", "light");
+          document.documentElement.classList.remove("dark");
+        }
+      }}
       {...props}
     >
       {children}
