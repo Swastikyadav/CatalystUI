@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 
 import { Sidebar } from "@/blocks/sidebar";
 import { SwitchRoot, SwitchThumb } from "@/components/ui/switch";
@@ -21,6 +21,9 @@ import {
   BookmarkMinusIcon,
   BoxesIcon,
   ChartLineIcon,
+  CoinsIcon,
+  FilesIcon,
+  Globe2Icon,
   LinkIcon,
   LogOutIcon,
   MoonIcon,
@@ -29,10 +32,12 @@ import {
   PresentationIcon,
   RocketIcon,
   SettingsIcon,
+  ShoppingCartIcon,
   UserIcon,
   UsersIcon,
 } from "lucide-react";
 import { cx } from "@/lib/utils";
+import { Card } from "@/components/ui/card";
 
 const navLinks = {
   default: [
@@ -55,12 +60,39 @@ const profileLinks = [
   { icon: <MoonIcon width={18} />, value: "Dark Mode", link: "#" },
 ];
 
+const kpis = [
+  {
+    title: "Today's Money",
+    description: "$53,000",
+    growth: 55,
+    icon: <CoinsIcon />,
+  },
+  {
+    title: "Today's Users",
+    description: "2,300",
+    growth: 3,
+    icon: <Globe2Icon />,
+  },
+  {
+    title: "New Clients",
+    description: "+3,462",
+    growth: -2,
+    icon: <FilesIcon />,
+  },
+  {
+    title: "Sales",
+    description: "$103,430",
+    growth: 5,
+    icon: <ShoppingCartIcon />,
+  },
+];
+
 function SalesOverview() {
   const [open, setOpen] = useState(true);
 
   return (
     <div id="container" className="flex">
-      <Sidebar.Root open={open}>
+      <Sidebar.Root open={open} className="z-100">
         <Sidebar.Title onClose={() => setOpen(false)}>
           <BoxesIcon /> <span>SoftUI</span>
         </Sidebar.Title>
@@ -109,6 +141,34 @@ function SalesOverview() {
             </div>
           </span>
         </header>
+
+        <section className="p-6 flex gap-2 flex-wrap lg:flex-nowrap">
+          {kpis.map((kpi) => (
+            <Card key={kpi.title} className="w-min-3/12">
+              <article className="flex items-center justify-between">
+                <div>
+                  <CardTitle>{kpi.title}</CardTitle>
+                  <CardDescription>
+                    <p className="flex items-baseline gap-2">
+                      {kpi.description}{" "}
+                      <span
+                        className={cx(
+                          "text-xs text-green-600 dark:text-green-400",
+                          kpi.growth < 0 ? "text-red-600 dark:text-red-400" : ""
+                        )}
+                      >
+                        {`${kpi.growth > 0 ? "+" : ""}${kpi.growth}%`}
+                      </span>
+                    </p>
+                  </CardDescription>
+                </div>
+                <span className="text-white bg-blue-600 w-[40px] h-[40px] flex items-center justify-center rounded-lg">
+                  {kpi.icon}
+                </span>
+              </article>
+            </Card>
+          ))}
+        </section>
       </main>
     </div>
   );
@@ -196,6 +256,45 @@ function ProfilePopoverContent() {
         className="hover:bg-gray-100 dark:hover:bg-gray-600 p-1 dark:text-gray-100"
       />
     </div>
+  );
+}
+
+function CardTitle({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <p
+      className={cx(
+        // base
+        "text-gray-800 dark:text-gray-100 text-sm",
+        className
+      )}
+    >
+      {children}
+    </p>
+  );
+}
+function CardDescription({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <h2
+      className={cx(
+        //base
+        "text-gray-700 dark:text-gray-200 font-bold",
+        className
+      )}
+    >
+      {children}
+    </h2>
   );
 }
 
