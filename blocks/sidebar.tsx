@@ -1,3 +1,4 @@
+import { XIcon } from "lucide-react";
 import React, { ReactNode } from "react";
 
 function Root({
@@ -13,7 +14,7 @@ function Root({
       {open && (
         <aside
           {...props}
-          className="w-3xs h-screen border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#090E1A] p-6"
+          className="absolute md:relative top-0 left-0 w-3xs h-screen border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#090E1A] p-6"
         >
           {children}
         </aside>
@@ -22,11 +23,18 @@ function Root({
   );
 }
 
-function Title({ children }: { children: ReactNode }) {
+function Title({
+  onClose,
+  children,
+}: {
+  onClose: () => void;
+  children: ReactNode;
+}) {
   return (
     <>
-      <nav className="flex items-center gap-2 font-bold text-gray-800 dark:text-gray-50">
-        {children}
+      <nav className="flex items-center justify-between font-bold text-gray-800 dark:text-gray-50">
+        <span className="flex items-center gap-2">{children}</span>
+        <XIcon onClick={onClose} className="block md:hidden" />
       </nav>
     </>
   );

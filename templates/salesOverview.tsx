@@ -35,7 +35,7 @@ function SalesOverview() {
   return (
     <div id="container" className="flex">
       <Sidebar.Root open={open}>
-        <Sidebar.Title>
+        <Sidebar.Title onClose={() => setOpen(false)}>
           <BoxesIcon /> <span>SoftUI</span>
         </Sidebar.Title>
         <Sidebar.Description>
