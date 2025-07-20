@@ -3,6 +3,7 @@
 import React, { ReactElement, ReactNode, useState } from "react";
 
 import { Sidebar } from "@/blocks/sidebar";
+import TopProductCard from "@/blocks/topProductsCard";
 import { SwitchRoot, SwitchThumb } from "@/components/ui/switch";
 import {
   AvatarRoot,
@@ -37,7 +38,7 @@ import {
   UsersIcon,
 } from "lucide-react";
 import { cx } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
+import { CardRoot, CardTitle, CardDescription } from "@/components/ui/card";
 
 const navLinks = {
   default: [
@@ -84,6 +85,70 @@ const kpis = [
     description: "$103,430",
     growth: 5,
     icon: <ShoppingCartIcon />,
+  },
+];
+
+const products = [
+  {
+    id: 1,
+    title: "Backpack, Fits 15 Laptops",
+    price: 109.95,
+    orders: "12,842",
+    category: "men's clothing",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    rating: {
+      rate: 3.9,
+      count: 120,
+    },
+  },
+  {
+    id: 2,
+    title: "Mens Premium T-Shirts ",
+    price: 22.3,
+    orders: "2,421",
+    category: "men's clothing",
+    image:
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+    rating: {
+      rate: 4.1,
+      count: 259,
+    },
+  },
+  {
+    id: 3,
+    title: "Mens Cotton Jacket",
+    price: 55.99,
+    orders: "5,921",
+    category: "men's clothing",
+    image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+    rating: {
+      rate: 4.7,
+      count: 500,
+    },
+  },
+  {
+    id: 4,
+    title: "Mens Casual Fit",
+    price: 15.99,
+    orders: "921",
+    category: "men's clothing",
+    image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+    rating: {
+      rate: 2.1,
+      count: 430,
+    },
+  },
+  {
+    id: 5,
+    title: "Gold Chain Bracelet",
+    price: 695,
+    orders: "8,232",
+    category: "jewelery",
+    image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+    rating: {
+      rate: 4.6,
+      count: 400,
+    },
   },
 ];
 
@@ -144,7 +209,7 @@ function SalesOverview() {
 
         <section className="p-6 flex gap-2 flex-wrap lg:flex-nowrap">
           {kpis.map((kpi) => (
-            <Card key={kpi.title} className="w-min-3/12">
+            <CardRoot key={kpi.title} className="w-min-3/12">
               <article className="flex items-center justify-between">
                 <div>
                   <CardTitle>{kpi.title}</CardTitle>
@@ -166,8 +231,13 @@ function SalesOverview() {
                   {kpi.icon}
                 </span>
               </article>
-            </Card>
+            </CardRoot>
           ))}
+        </section>
+
+        <section className="p-6 flex items-start gap-2 flex-wrap lg:flex-nowrap">
+          <CardRoot className="w-full lg:w-8/12"></CardRoot>
+          <TopProductCard products={products} className="lg:w-4/12" />
         </section>
       </main>
     </div>
@@ -256,45 +326,6 @@ function ProfilePopoverContent() {
         className="hover:bg-gray-100 dark:hover:bg-gray-600 p-1 dark:text-gray-100"
       />
     </div>
-  );
-}
-
-function CardTitle({
-  className,
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
-  return (
-    <p
-      className={cx(
-        // base
-        "text-gray-800 dark:text-gray-100 text-sm",
-        className
-      )}
-    >
-      {children}
-    </p>
-  );
-}
-function CardDescription({
-  className,
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
-  return (
-    <h2
-      className={cx(
-        //base
-        "text-gray-700 dark:text-gray-200 font-bold",
-        className
-      )}
-    >
-      {children}
-    </h2>
   );
 }
 

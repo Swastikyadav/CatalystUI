@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { Slot } from "@radix-ui/react-slot";
 import { cx } from "@/lib/utils";
@@ -7,7 +7,7 @@ interface CardProps extends React.ComponentPropsWithoutRef<"div"> {
   asChild?: boolean;
 }
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
+const CardRoot = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, asChild, ...props }, forwardedRef) => {
     const Component = asChild ? Slot : "div";
     return (
@@ -29,6 +29,46 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
   }
 );
 
-Card.displayName = "Card";
+CardRoot.displayName = "CardRoot";
 
-export { Card, type CardProps };
+function CardTitle({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <p
+      className={cx(
+        // base
+        "text-gray-800 dark:text-gray-100 text-sm",
+        className
+      )}
+    >
+      {children}
+    </p>
+  );
+}
+
+function CardDescription({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <h2
+      className={cx(
+        //base
+        "text-gray-700 dark:text-gray-200 font-bold",
+        className
+      )}
+    >
+      {children}
+    </h2>
+  );
+}
+
+export { CardRoot, CardTitle, CardDescription, type CardProps };
