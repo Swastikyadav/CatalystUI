@@ -4,18 +4,21 @@ import { Slot } from "@radix-ui/react-slot";
 import { cx } from "@/lib/utils";
 
 interface CardProps extends React.ComponentPropsWithoutRef<"div"> {
+  showShadow?: boolean;
   asChild?: boolean;
 }
 
 const CardRoot = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, asChild, ...props }, forwardedRef) => {
+  ({ showShadow = true, className, asChild, ...props }, forwardedRef) => {
     const Component = asChild ? Slot : "div";
     return (
       <Component
         ref={forwardedRef}
         className={cx(
           // base
-          "relative w-full rounded-lg border p-6 text-left shadow-xs",
+          "relative w-full rounded-lg border p-6 text-left",
+          // shadow
+          showShadow ? "shadow-xs" : "",
           // bg color
           "bg-white dark:bg-[#090E1A]",
           // border

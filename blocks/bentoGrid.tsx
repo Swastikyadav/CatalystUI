@@ -1,0 +1,32 @@
+import React, { ReactNode } from "react";
+
+function GridRoot({ children }: { children: ReactNode }) {
+  return (
+    <>
+      <div className="w-full hidden lg:grid lg:grid-cols-12 gap-2">
+        {children}
+      </div>
+
+      <div className="flex flex-col gap-4 lg:hidden">{children}</div>
+    </>
+  );
+}
+
+function Grid1({ children }: { children: ReactNode }) {
+  return <div className="col-span-8 row-span-2">{children}</div>;
+}
+function Grid2({ children }: { children: ReactNode }) {
+  return <div className="col-span-4 row-span-4">{children}</div>;
+}
+function Grid3({ children }: { children: ReactNode }) {
+  return <div className="col-span-8 row-span-5">{children}</div>;
+}
+function Grid4({ children }: { children: ReactNode }) {
+  return <div className="col-span-4 row-span-3">{children}</div>;
+}
+
+function GridContent({ children }: { children: ReactNode }) {
+  return <>{children}</>;
+}
+
+export { GridRoot, GridContent, Grid1, Grid2, Grid3, Grid4 };

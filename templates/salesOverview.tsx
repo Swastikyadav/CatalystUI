@@ -46,6 +46,14 @@ import {
   LineChartContent,
   Legend,
 } from "@/components/charts/lineChart";
+import {
+  Grid1,
+  Grid2,
+  Grid3,
+  Grid4,
+  GridContent,
+  GridRoot,
+} from "@/blocks/bentoGrid";
 
 const data = [
   {
@@ -287,28 +295,48 @@ function SalesOverview() {
           ))}
         </section>
 
-        <section className="p-6 flex items-start gap-2 flex-wrap lg:flex-nowrap">
-          <CardRoot className="w-full lg:w-8/12">
-            <CardTitle>Sales Overview</CardTitle>
-            <CardDescription className="text-xs py-1 text-gray-700 dark:text-gray-200">
-              <span className="text-green-600 dark:text-green-400">+</span>4%
-              more in 2025
-            </CardDescription>
+        {/* Desktop/Tablet Grid (lg and above) */}
+        <section className="p-6">
+          <GridRoot>
+            <GridContent>
+              <Grid1>
+                <CardRoot>
+                  <CardTitle>Sales Overview</CardTitle>
+                  <CardDescription className="text-xs py-1 text-gray-700 dark:text-gray-200">
+                    <span className="text-green-600 dark:text-green-400">
+                      +
+                    </span>
+                    4% more in 2025
+                  </CardDescription>
 
-            <div className="relative py-4 w-full h-[300px]">
-              <ChartContainer>
-                <LineChartRoot data={data}>
-                  <LineChartContent
-                    showSecondaryLine={true}
-                    primaryDataKey="online"
-                    secondaryDataKey="cod"
-                  />
-                </LineChartRoot>
-              </ChartContainer>
-              <Legend primaryLegendName="online" secondaryLengendName="cod" />
-            </div>
-          </CardRoot>
-          <TopProductCard products={products} className="lg:w-4/12" />
+                  <div className="relative py-4 w-full h-[300px]">
+                    <ChartContainer>
+                      <LineChartRoot data={data}>
+                        <LineChartContent
+                          showSecondaryLine={true}
+                          primaryDataKey="online"
+                          secondaryDataKey="cod"
+                        />
+                      </LineChartRoot>
+                    </ChartContainer>
+                    <Legend
+                      primaryLegendName="online"
+                      secondaryLengendName="cod"
+                    />
+                  </div>
+                </CardRoot>
+              </Grid1>
+              <Grid2>
+                <TopProductCard products={products} />
+              </Grid2>
+              <Grid3>
+                <CardRoot></CardRoot>
+              </Grid3>
+              <Grid4>
+                <CardRoot></CardRoot>
+              </Grid4>
+            </GridContent>
+          </GridRoot>
         </section>
       </main>
     </div>

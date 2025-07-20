@@ -20,7 +20,7 @@ function TopProductCard({
     <CardRoot
       className={cx(
         // base
-        "w-full lg:w-lg p-0",
+        "w-full p-0",
         // className prop
         className
       )}
@@ -35,6 +35,7 @@ function TopProductCard({
           <CardRoot
             key={product.id}
             className="my-2 p-2 px-6 border-0 border-t rounded-none text-sm font-normal text-gray-800 dark:text-gray-100 flex items-baseline-last justify-between"
+            showShadow={false}
           >
             <div className="flex gap-4">
               <Image
