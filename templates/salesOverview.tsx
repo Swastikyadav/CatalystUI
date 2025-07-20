@@ -1,21 +1,6 @@
 "use client";
 
-import React, { ReactElement, ReactNode, useState } from "react";
-
-import { Sidebar } from "@/blocks/sidebar";
-import TopProductCard from "@/blocks/topProductsCard";
-import { SwitchRoot, SwitchThumb } from "@/components/ui/switch";
-import {
-  AvatarRoot,
-  AvatarImage,
-  AvatarFallback,
-} from "@/components/ui/avatar";
-import {
-  PopoverRoot,
-  PopoverTrigger,
-  PopoverPortal,
-  PopoverContent,
-} from "@/components/ui/popover";
+import React, { ReactElement, useState } from "react";
 import Link from "next/link";
 import {
   BellIcon,
@@ -37,8 +22,75 @@ import {
   UserIcon,
   UsersIcon,
 } from "lucide-react";
+
 import { cx } from "@/lib/utils";
+
+import { Sidebar } from "@/blocks/sidebar";
+import TopProductCard from "@/blocks/topProductsCard";
+import { SwitchRoot, SwitchThumb } from "@/components/ui/switch";
+import {
+  AvatarRoot,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/avatar";
+import {
+  PopoverRoot,
+  PopoverTrigger,
+  PopoverPortal,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { CardRoot, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  ChartContainer,
+  LineChartRoot,
+  LineChartContent,
+  Legend,
+} from "@/components/charts/lineChart";
+
+const data = [
+  {
+    name: "Jan",
+    cod: 4000,
+    online: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Feb",
+    cod: 3000,
+    online: 1398,
+    amt: 2210,
+  },
+  {
+    name: "Mar",
+    cod: 2000,
+    online: 9800,
+    amt: 2290,
+  },
+  {
+    name: "Apr",
+    cod: 2780,
+    online: 3908,
+    amt: 2000,
+  },
+  {
+    name: "May",
+    cod: 1890,
+    online: 4800,
+    amt: 2181,
+  },
+  {
+    name: "Jun",
+    cod: 2390,
+    online: 3800,
+    amt: 2500,
+  },
+  {
+    name: "Jul",
+    cod: 3490,
+    online: 4300,
+    amt: 2100,
+  },
+];
 
 const navLinks = {
   default: [
@@ -213,7 +265,7 @@ function SalesOverview() {
               <article className="flex items-center justify-between">
                 <div>
                   <CardTitle>{kpi.title}</CardTitle>
-                  <CardDescription>
+                  <CardDescription className="font-bold">
                     <p className="flex items-baseline gap-2">
                       {kpi.description}{" "}
                       <span
@@ -236,7 +288,26 @@ function SalesOverview() {
         </section>
 
         <section className="p-6 flex items-start gap-2 flex-wrap lg:flex-nowrap">
-          <CardRoot className="w-full lg:w-8/12"></CardRoot>
+          <CardRoot className="w-full lg:w-8/12">
+            <CardTitle>Sales Overview</CardTitle>
+            <CardDescription className="text-xs py-1 text-gray-700 dark:text-gray-200">
+              <span className="text-green-600 dark:text-green-400">+</span>4%
+              more in 2025
+            </CardDescription>
+
+            <div className="relative py-4 w-full h-[300px]">
+              <ChartContainer>
+                <LineChartRoot data={data}>
+                  <LineChartContent
+                    showSecondaryLine={true}
+                    primaryDataKey="online"
+                    secondaryDataKey="cod"
+                  />
+                </LineChartRoot>
+              </ChartContainer>
+              <Legend primaryLegendName="online" secondaryLengendName="cod" />
+            </div>
+          </CardRoot>
           <TopProductCard products={products} className="lg:w-4/12" />
         </section>
       </main>

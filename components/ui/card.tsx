@@ -62,7 +62,7 @@ function CardDescription({
     <h2
       className={cx(
         //base
-        "text-gray-700 dark:text-gray-200 font-bold",
+        "text-gray-700 dark:text-gray-200",
         className
       )}
     >
