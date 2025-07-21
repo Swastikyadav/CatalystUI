@@ -18,7 +18,7 @@ function Root({
         <aside
           className={cx(
             // base
-            "absolute md:relative top-0 left-0 w-3xs h-screen border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#090E1A] p-6",
+            "absolute md:relative top-0 left-0 w-3xs min-h-screen border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#090E1A] p-6",
             // from Sidebar.Root
             className
           )}

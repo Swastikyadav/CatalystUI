@@ -40,11 +40,11 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { CardRoot, CardTitle, CardDescription } from "@/components/ui/card";
+import { ChartContainer } from "@/components/charts/common/chartContainer";
 import {
-  ChartContainer,
   LineChartRoot,
   LineChartContent,
-  Legend,
+  LineLegend,
 } from "@/components/charts/lineChart";
 import {
   Grid1,
@@ -54,6 +54,11 @@ import {
   GridContent,
   GridRoot,
 } from "@/blocks/bentoGrid";
+import {
+  BarGraphRoot,
+  BarGraphContent,
+  BarLegend,
+} from "@/components/charts/barChart";
 
 const data = [
   {
@@ -319,7 +324,7 @@ function SalesOverview() {
                         />
                       </LineChartRoot>
                     </ChartContainer>
-                    <Legend
+                    <LineLegend
                       primaryLegendName="online"
                       secondaryLengendName="cod"
                     />
@@ -333,7 +338,25 @@ function SalesOverview() {
                 <CardRoot></CardRoot>
               </Grid3>
               <Grid4>
-                <CardRoot></CardRoot>
+                <CardRoot>
+                  <div className="w-full h-[200px]">
+                    <ChartContainer>
+                      <BarGraphRoot data={data}>
+                        <BarGraphContent
+                          showSecondaryBar
+                          showXAxisLine={false}
+                          showYAxisLine={false}
+                          primaryDataKey="online"
+                          secondaryDataKey="cod"
+                        />
+                      </BarGraphRoot>
+                    </ChartContainer>
+                    <BarLegend
+                      primaryLegendName="online"
+                      secondaryLengendName="cod"
+                    />
+                  </div>
+                </CardRoot>
               </Grid4>
             </GridContent>
           </GridRoot>
