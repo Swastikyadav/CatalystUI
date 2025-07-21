@@ -16,6 +16,7 @@ const CustomTooltip = ({
   // @ts-expect-error - TODO: Add proper types for Recharts tooltip later
   payload,
   // @ts-expect-error - TODO: Add proper types for Recharts tooltip later
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   label,
   primaryDataKey,
   secondaryDataKey,

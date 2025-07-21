@@ -59,6 +59,16 @@ import {
   BarGraphContent,
   BarLegend,
 } from "@/components/charts/barChart";
+import {
+  TableRoot,
+  Table,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+  TableData,
+  TableBody,
+  TableCaption,
+} from "@/components/ui/table";
 
 const data = [
   {
@@ -217,6 +227,57 @@ const products = [
   },
 ];
 
+const tableData: Array<{
+  id: number;
+  country: string;
+  sales: number;
+  value: number;
+  bounce: number;
+}> = [
+  {
+    id: 1,
+    country: "United States",
+    sales: 2500,
+    value: 230900,
+    bounce: 29.9,
+  },
+  {
+    id: 2,
+    country: "India",
+    sales: 3900,
+    value: 440000,
+    bounce: 40.22,
+  },
+  {
+    id: 3,
+    country: "Germany",
+    sales: 1400,
+    value: 190700,
+    bounce: 23.44,
+  },
+  {
+    id: 4,
+    country: "Brasil",
+    sales: 562,
+    value: 30900,
+    bounce: 32.14,
+  },
+  {
+    id: 5,
+    country: "Britain",
+    sales: 1627,
+    value: 143960,
+    bounce: 19.2,
+  },
+  {
+    id: 6,
+    country: "China",
+    sales: 33023,
+    value: 100223,
+    bounce: 33.3,
+  },
+];
+
 function SalesOverview() {
   const [open, setOpen] = useState(true);
 
@@ -335,10 +396,41 @@ function SalesOverview() {
                 <TopProductCard products={products} />
               </Grid2>
               <Grid3>
-                <CardRoot></CardRoot>
+                <CardRoot>
+                  <CardTitle>Sales By Country</CardTitle>
+                  <CardDescription>
+                    <TableRoot>
+                      <Table>
+                        <TableCaption>Sales by country</TableCaption>
+                        <TableHead>
+                          <TableRow>
+                            <TableHeaderCell>Country</TableHeaderCell>
+                            <TableHeaderCell>Sales</TableHeaderCell>
+                            <TableHeaderCell>Value</TableHeaderCell>
+                            <TableHeaderCell>Bounce</TableHeaderCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {tableData.map((data) => (
+                            <TableRow key={data.id}>
+                              <TableData>{data.country}</TableData>
+                              <TableData>
+                                {data.sales.toLocaleString("en-US")}
+                              </TableData>
+                              <TableData>
+                                ${data.value.toLocaleString("en-US")}
+                              </TableData>
+                              <TableData>{data.bounce}</TableData>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableRoot>
+                  </CardDescription>
+                </CardRoot>
               </Grid3>
               <Grid4>
-                <CardRoot>
+                <CardRoot className="relative lg:-top-16">
                   <div className="w-full h-[200px]">
                     <ChartContainer>
                       <BarGraphRoot data={data}>
@@ -437,7 +529,7 @@ function ProfilePopoverContent() {
           />
         );
       })}
-      <hr className="text-gray-200 my-3" />
+      <hr className="text-gray-200 dark:text-gray-800 my-3" />
       <NavLink
         key="signout"
         link={{
