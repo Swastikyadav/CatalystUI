@@ -10,9 +10,7 @@ import {
   CoinsIcon,
   FilesIcon,
   Globe2Icon,
-  LinkIcon,
   LogOutIcon,
-  MoonIcon,
   PackageIcon,
   PanelLeftIcon,
   PresentationIcon,
@@ -28,17 +26,6 @@ import { cx } from "@/lib/utils";
 import { Sidebar } from "@/blocks/sidebar";
 import TopProductCard from "@/blocks/topProductsCard";
 import { SwitchRoot, SwitchThumb } from "@/components/ui/switch";
-import {
-  AvatarRoot,
-  AvatarImage,
-  AvatarFallback,
-} from "@/components/ui/avatar";
-import {
-  PopoverRoot,
-  PopoverTrigger,
-  PopoverPortal,
-  PopoverContent,
-} from "@/components/ui/popover";
 import { CardRoot, CardTitle, CardDescription } from "@/components/ui/card";
 import { ChartContainer } from "@/components/charts/common/chartContainer";
 import {
@@ -69,6 +56,8 @@ import {
   TableBody,
   TableCaption,
 } from "@/components/ui/table";
+import { ProfilePopoverRoot } from "@/blocks/profileCard";
+import NavLink from "@/blocks/common/navLink";
 
 const data = [
   {
@@ -128,13 +117,6 @@ const navLinks = {
     { icon: <RocketIcon />, value: "Campaign", link: "#" },
   ],
 };
-
-const profileLinks = [
-  { icon: <UserIcon width={18} />, value: "Profile", link: "#" },
-  { icon: <SettingsIcon width={18} />, value: "Account Settings", link: "#" },
-  { icon: <LinkIcon width={18} />, value: "Integration", link: "#" },
-  { icon: <MoonIcon width={18} />, value: "Dark Mode", link: "#" },
-];
 
 const kpis = [
   {
@@ -312,23 +294,7 @@ function SalesOverview() {
             <UserIcon width={18} className="cursor-pointer" />
             <BellIcon width={18} className="cursor-pointer" />
             <div>
-              <PopoverRoot>
-                <PopoverTrigger asChild>
-                  <AvatarRoot>
-                    <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44374494" />
-                    <AvatarFallback>SW</AvatarFallback>
-                  </AvatarRoot>
-                </PopoverTrigger>
-                <PopoverPortal>
-                  <PopoverContent
-                    className="mr-4"
-                    autoFocus={false}
-                    sideOffset={10}
-                  >
-                    <ProfilePopoverContent />
-                  </PopoverContent>
-                </PopoverPortal>
-              </PopoverRoot>
+              <ProfilePopoverRoot />
             </div>
           </span>
         </header>
@@ -454,91 +420,6 @@ function SalesOverview() {
           </GridRoot>
         </section>
       </main>
-    </div>
-  );
-}
-
-function NavLink({
-  link,
-  className,
-}: {
-  link: { icon: ReactElement; link: string; active?: boolean; value: string };
-  className?: string;
-}) {
-  return (
-    <Link
-      href={link.link}
-      className={cx(
-        // base
-        "flex gap-2 items-center",
-        // active
-        link.active
-          ? "text-gray-950 dark:text-gray-50"
-          : "text-gray-500 dark:text-gray-400",
-        // class props
-        className
-      )}
-    >
-      <span
-        className={`p-1 rounded-lg ${
-          link.active ? "text-white bg-blue-600" : ""
-        }`}
-      >
-        {link.icon}
-      </span>{" "}
-      {link.value}
-    </Link>
-  );
-}
-
-function ProfilePopoverContent() {
-  return (
-    <div className="border border-gray-200 dark:border-gray-800 py-2 w-3xs bg-white dark:bg-[#090E1A] rounded-lg text-sm">
-      {profileLinks.map((link) => {
-        if (link.value == "Dark Mode") {
-          return (
-            <div
-              key="dark-mode-toggle"
-              className="flex items-center justify-between pr-3 hover:bg-gray-100 dark:hover:bg-gray-600"
-            >
-              <NavLink
-                key={link.value}
-                link={{
-                  icon: link.icon,
-                  value: link.value,
-                  link: link.link,
-                }}
-                className="hover:bg-gray-100 dark:hover:bg-gray-600 p-1 dark:text-gray-100"
-              />
-              <SwitchRoot>
-                <SwitchThumb />
-              </SwitchRoot>
-            </div>
-          );
-        }
-
-        return (
-          <NavLink
-            key={link.value}
-            link={{
-              icon: link.icon,
-              value: link.value,
-              link: link.link,
-            }}
-            className="hover:bg-gray-100 dark:hover:bg-gray-600 p-1 dark:text-gray-100"
-          />
-        );
-      })}
-      <hr className="text-gray-200 dark:text-gray-800 my-3" />
-      <NavLink
-        key="signout"
-        link={{
-          icon: <LogOutIcon width={18} />,
-          value: "Sign Out",
-          link: "#",
-        }}
-        className="hover:bg-gray-100 dark:hover:bg-gray-600 p-1 dark:text-gray-100"
-      />
     </div>
   );
 }
