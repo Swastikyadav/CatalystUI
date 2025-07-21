@@ -1,7 +1,6 @@
 "use client";
 
 import React, { ReactElement, useState } from "react";
-import Link from "next/link";
 import {
   BellIcon,
   BookmarkMinusIcon,
@@ -10,7 +9,6 @@ import {
   CoinsIcon,
   FilesIcon,
   Globe2Icon,
-  LogOutIcon,
   PackageIcon,
   PanelLeftIcon,
   PresentationIcon,
@@ -21,11 +19,8 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-import { cx } from "@/lib/utils";
-
 import { Sidebar } from "@/blocks/sidebar";
 import TopProductCard from "@/blocks/topProductsCard";
-import { SwitchRoot, SwitchThumb } from "@/components/ui/switch";
 import { CardRoot, CardTitle, CardDescription } from "@/components/ui/card";
 import { ChartContainer } from "@/components/charts/common/chartContainer";
 import {
@@ -58,6 +53,7 @@ import {
 } from "@/components/ui/table";
 import { ProfilePopoverRoot } from "@/blocks/profileCard";
 import NavLink from "@/blocks/common/navLink";
+import KpiCard from "@/blocks/kpiCard";
 
 const data = [
   {
@@ -118,7 +114,12 @@ const navLinks = {
   ],
 };
 
-const kpis = [
+const kpis: Array<{
+  title: string;
+  description: string;
+  growth: number;
+  icon: ReactElement;
+}> = [
   {
     title: "Today's Money",
     description: "$53,000",
@@ -301,29 +302,7 @@ function SalesOverview() {
 
         <section className="p-6 flex gap-2 flex-wrap lg:flex-nowrap">
           {kpis.map((kpi) => (
-            <CardRoot key={kpi.title} className="w-min-3/12">
-              <article className="flex items-center justify-between">
-                <div>
-                  <CardTitle>{kpi.title}</CardTitle>
-                  <CardDescription className="font-bold">
-                    <p className="flex items-baseline gap-2">
-                      {kpi.description}{" "}
-                      <span
-                        className={cx(
-                          "text-xs text-green-600 dark:text-green-400",
-                          kpi.growth < 0 ? "text-red-600 dark:text-red-400" : ""
-                        )}
-                      >
-                        {`${kpi.growth > 0 ? "+" : ""}${kpi.growth}%`}
-                      </span>
-                    </p>
-                  </CardDescription>
-                </div>
-                <span className="text-white bg-blue-600 w-[40px] h-[40px] flex items-center justify-center rounded-lg">
-                  {kpi.icon}
-                </span>
-              </article>
-            </CardRoot>
+            <KpiCard key={kpi.title} kpi={kpi} />
           ))}
         </section>
 
