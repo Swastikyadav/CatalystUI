@@ -1,4 +1,8 @@
-import { CardDescription, CardRoot, CardTitle } from "@/components/ui/card";
+import {
+  CardDescription,
+  CardRoot,
+  CardTitle,
+} from "@/library/components/ui/card";
 import { cx } from "@/lib/utils";
 import React from "react";
 import { TooltipProps } from "recharts";

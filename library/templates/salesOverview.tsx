@@ -19,15 +19,19 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-import { Sidebar } from "@/blocks/sidebar";
-import TopProductCard from "@/blocks/topProductsCard";
-import { CardRoot, CardTitle, CardDescription } from "@/components/ui/card";
-import { ChartContainer } from "@/components/charts/common/chartContainer";
+import { Sidebar } from "@/library/blocks/sidebar";
+import TopProductCard from "@/library/blocks/topProductsCard";
+import {
+  CardRoot,
+  CardTitle,
+  CardDescription,
+} from "@/library/components/ui/card";
+import { ChartContainer } from "@/library/components/charts/common/chartContainer";
 import {
   LineChartRoot,
   LineChartContent,
   LineLegend,
-} from "@/components/charts/lineChart";
+} from "@/library/components/charts/lineChart";
 import {
   Grid1,
   Grid2,
@@ -35,12 +39,12 @@ import {
   Grid4,
   GridContent,
   GridRoot,
-} from "@/blocks/bentoGrid";
+} from "@/library/blocks/bentoGrid";
 import {
   BarGraphRoot,
   BarGraphContent,
   BarLegend,
-} from "@/components/charts/barChart";
+} from "@/library/components/charts/barChart";
 import {
   TableRoot,
   Table,
@@ -50,10 +54,10 @@ import {
   TableData,
   TableBody,
   TableCaption,
-} from "@/components/ui/table";
-import { ProfilePopoverRoot } from "@/blocks/profileCard";
-import NavLink from "@/blocks/common/navLink";
-import KpiCard from "@/blocks/kpiCard";
+} from "@/library/components/ui/table";
+import { ProfilePopoverRoot } from "@/library/blocks/profileCard";
+import NavLink from "@/library/blocks/common/navLink";
+import KpiCard from "@/library/blocks/kpiCard";
 
 const data = [
   {

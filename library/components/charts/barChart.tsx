@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts";
-import { CustomTooltip } from "@/components/charts/common/customTooltip";
+import { CustomTooltip } from "@/library/components/charts/common/customTooltip";
 import { cx } from "@/lib/utils";
 
 function BarGraphRoot({

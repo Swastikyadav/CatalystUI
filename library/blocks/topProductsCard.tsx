@@ -1,4 +1,8 @@
-import { CardRoot, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  CardRoot,
+  CardTitle,
+  CardDescription,
+} from "@/library/components/ui/card";
 import { cx } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";

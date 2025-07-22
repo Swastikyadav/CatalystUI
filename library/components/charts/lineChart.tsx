@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { CustomTooltip } from "@/components/charts/common/customTooltip";
+import { CustomTooltip } from "@/library/components/charts/common/customTooltip";
 import { cx } from "@/lib/utils";
 
 function LineChartRoot({
@@ -40,6 +40,7 @@ function LineChartContent({
   showSecondaryLine = false,
   primaryDataKey,
   secondaryDataKey,
+  showTick = true,
 }: {
   primaryStroke?: string;
   secondaryStroke?: string;
@@ -47,6 +48,7 @@ function LineChartContent({
   showSecondaryLine?: boolean;
   primaryDataKey: string;
   secondaryDataKey: string;
+  showTick?: boolean;
 }) {
   return (
     <>
@@ -69,19 +71,19 @@ function LineChartContent({
       <CartesianGrid
         strokeDasharray="6 6"
         vertical={false}
-        className="text-gray-"
+        className="text-gray-200"
       />
       <XAxis
         dataKey="name"
         axisLine={false}
         tickLine={false}
-        tick={{ fontSize: 12, fill: "#4a5565" }} // dark: "#99a1af"
+        tick={showTick ? { fontSize: 12, fill: "#4a5565" } : false} // dark: "#99a1af"
         tickMargin={20}
       />
       <YAxis
         axisLine={false}
         tickLine={false}
-        tick={{ fontSize: 12, fill: "#4a5565" }} // dark: "#99a1af"
+        tick={showTick ? { fontSize: 12, fill: "#4a5565" } : false} // dark: "#99a1af"
         tickMargin={20}
       />
       <Tooltip

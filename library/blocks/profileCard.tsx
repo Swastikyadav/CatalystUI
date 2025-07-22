@@ -4,14 +4,14 @@ import {
   AvatarRoot,
   AvatarImage,
   AvatarFallback,
-} from "@/components/ui/avatar";
+} from "@/library/components/ui/avatar";
 import {
   PopoverRoot,
   PopoverTrigger,
   PopoverPortal,
   PopoverContent,
-} from "@/components/ui/popover";
-import { SwitchRoot, SwitchThumb } from "@/components/ui/switch";
+} from "@/library/components/ui/popover";
+import { SwitchRoot, SwitchThumb } from "@/library/components/ui/switch";
 import {
   LinkIcon,
   LogOutIcon,
@@ -20,6 +20,7 @@ import {
   UserIcon,
 } from "lucide-react";
 import NavLink from "./common/navLink";
+import { cx } from "@/lib/utils";
 
 const profileLinks = [
   { icon: <UserIcon width={18} />, value: "Profile", link: "#" },
@@ -46,9 +47,14 @@ function ProfilePopoverRoot() {
   );
 }
 
-function ProfilePopoverContent() {
+function ProfilePopoverContent({ className }: { className?: string }) {
   return (
-    <div className="border border-gray-200 dark:border-gray-800 py-2 w-3xs bg-white dark:bg-[#090E1A] rounded-lg text-sm">
+    <div
+      className={cx(
+        "border border-gray-200 dark:border-gray-800 py-2 w-3xs bg-white dark:bg-[#090E1A] rounded-lg text-sm",
+        className
+      )}
+    >
       {profileLinks.map((link) => {
         if (link.value == "Dark Mode") {
           return (
