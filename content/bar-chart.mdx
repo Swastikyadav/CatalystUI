@@ -1,3 +1,33 @@
+---
+title: Bar Chart
+---
+
+A bar graph chart for data visualization
+
+<BarChartView />
+
+### Installations
+
+Install radix-ui, clsx, and tailwind-merge to use avatar component.
+
+```bash
+npm install recharts clsx tailwind-merge
+```
+
+Add the following function in lib/utils
+
+```ts
+import clsx, { type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cx(...args: ClassValue[]) {
+  return twMerge(clsx(...args));
+}
+```
+
+### Copy paste the component
+
+```tsx
 import React, { ReactNode } from "react";
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts";
 import { CustomTooltip } from "@/library/components/charts/common/customTooltip";
@@ -30,7 +60,6 @@ function BarGraphContent({
   showSecondaryBar = false,
   primaryDataKey,
   secondaryDataKey,
-  showTooltip = true,
 }: {
   showXAxisLine?: boolean;
   showYAxisLine?: boolean;
@@ -40,7 +69,6 @@ function BarGraphContent({
   showSecondaryBar?: boolean;
   primaryDataKey: string;
   secondaryDataKey: string;
-  showTooltip?: boolean;
 }) {
   return (
     <>
@@ -68,18 +96,16 @@ function BarGraphContent({
           tickMargin={20}
         />
       )}
-      {showTooltip && (
-        <Tooltip
-          cursor={{ fill: "#4a5565", opacity: 0.3 }} // dark opacity: 0.6
-          content={(tooltipProps) => (
-            <CustomTooltip
-              {...tooltipProps}
-              primaryDataKey={primaryDataKey}
-              secondaryDataKey={secondaryDataKey}
-            />
-          )}
-        />
-      )}
+      <Tooltip
+        cursor={{ fill: "#4a5565", opacity: 0.3 }} // dark opacity: 0.6
+        content={(tooltipProps) => (
+          <CustomTooltip
+            {...tooltipProps}
+            primaryDataKey={primaryDataKey}
+            secondaryDataKey={secondaryDataKey}
+          />
+        )}
+      />
     </>
   );
 }
@@ -117,3 +143,43 @@ function Legend({
 }
 
 export { BarGraphRoot, BarGraphContent, Legend as BarLegend };
+```
+
+### Usage
+
+```tsx
+import {
+  BarGraphContent,
+  BarGraphRoot,
+} from "@/library/components/charts/barChart";
+
+const data = [
+  {
+    name: "Jan",
+    cod: 4000,
+    online: 2400,
+    amt: 2400,
+  },
+  ...
+];
+
+export function BarChart() {
+  return (
+    <ChartContainer>
+      <BarGraphRoot data={data}>
+        <BarGraphContent
+          showSecondaryBar
+          showXAxisLine={false}
+          showYAxisLine={false}
+          primaryDataKey="online"
+          secondaryDataKey="cod"
+        />
+      </BarGraphRoot>
+    </ChartContainer>
+  );
+}
+```
+
+Next: [Bento Grid](/documentation/bento-grid)
+
+Found a bug? Report [here](https://github.com/swastikyadav/catalystui).

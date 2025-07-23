@@ -1,0 +1,122 @@
+---
+title: Popover
+---
+
+A popover component which shows up in a overlay when triggered.
+
+<Popover />
+
+### Installations
+
+Install radix-ui, clsx, and tailwind-merge to use avatar component.
+
+```bash
+npm install radix-ui clsx tailwind-merge
+```
+
+Add the following function in lib/utils
+
+```ts
+import clsx, { type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cx(...args: ClassValue[]) {
+  return twMerge(clsx(...args));
+}
+```
+
+### Copy paste the component
+
+```tsx
+import React, { ReactNode } from "react";
+
+import { Popover as PopoverPrimitive } from "radix-ui";
+import { cx } from "@/lib/utils";
+
+const PopoverRoot = ({ children, ...props }: { children: ReactNode }) => {
+  return <PopoverPrimitive.Root {...props}>{children}</PopoverPrimitive.Root>;
+};
+
+PopoverRoot.displayName = "PopoverRoot";
+
+const PopoverTrigger = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger>
+>(({ className, children, ...props }, forwardedRef) => {
+  return (
+    <PopoverPrimitive.Trigger
+      ref={forwardedRef}
+      className={cx(className)}
+      {...props}
+      asChild
+    >
+      {children}
+    </PopoverPrimitive.Trigger>
+  );
+});
+
+PopoverTrigger.displayName = "PopoverTrigger";
+
+const PopoverPortal = ({ children, ...props }: { children: ReactNode }) => {
+  return (
+    <PopoverPrimitive.Portal {...props}>{children}</PopoverPrimitive.Portal>
+  );
+};
+
+PopoverPortal.displayName = "PopoverPortal";
+
+const PopoverContent = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
+>(({ className, children, ...props }, forwardedRef) => {
+  return (
+    <PopoverPrimitive.Content
+      ref={forwardedRef}
+      className={cx(className)}
+      {...props}
+    >
+      {children}
+    </PopoverPrimitive.Content>
+  );
+});
+
+PopoverContent.displayName = "PopoverContent";
+
+export { PopoverRoot, PopoverTrigger, PopoverPortal, PopoverContent };
+```
+
+### Usage
+
+```tsx
+import {
+  PopoverRoot,
+  PopoverTrigger,
+  PopoverPortal,
+  PopoverContent,
+} from "@/library/components/ui/popover";
+
+export default function Popover() {
+  return (
+    <CardRoot>
+      <PopoverRoot>
+        <PopoverTrigger>
+          <Button>Popover Trigger</Button>
+        </PopoverTrigger>
+        <PopoverPortal>
+          <PopoverContent>
+            <div className="border border-gray-200 rounded bg-white shadow-xs text-center p-6">
+              This is a content inside popover.
+            </div>
+          </PopoverContent>
+        </PopoverPortal>
+      </PopoverRoot>
+    </CardRoot>
+  );
+}
+```
+
+---
+
+Next: [Switch](/documentation/switch)
+
+Found a bug? Report [here](https://github.com/swastikyadav/catalystui).

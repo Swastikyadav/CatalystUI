@@ -1,0 +1,147 @@
+---
+title: Avatar
+---
+
+User avatar with fallback to name initials.
+
+<Avatar />
+
+### Installations
+
+Install radix-ui, clsx, and tailwind-merge to use avatar component.
+
+```bash
+npm install radix-ui clsx tailwind-merge
+```
+
+Add the following function in lib/utils
+
+```ts
+import clsx, { type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cx(...args: ClassValue[]) {
+  return twMerge(clsx(...args));
+}
+```
+
+### Copy paste the component
+
+```tsx
+import React from "react";
+
+import { Avatar as AvatarPrimitive } from "radix-ui";
+import { cx } from "@/lib/utils";
+
+const AvatarRoot = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+>(({ className, children, ...props }, forwardedRef) => {
+  return (
+    <AvatarPrimitive.Root
+      ref={forwardedRef}
+      className={cx(className)}
+      {...props}
+    >
+      {children}
+    </AvatarPrimitive.Root>
+  );
+});
+
+AvatarRoot.displayName = "AvatarRoot";
+
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & {
+    imgUrl: string;
+  }
+>(({ imgUrl, className, ...props }, forwardedRef) => {
+  return (
+    <AvatarPrimitive.Image
+      ref={forwardedRef}
+      className={cx(
+        // base
+        "w-[26px] h-[26px] rounded-full cursor-pointer",
+        // className prop
+        className
+      )}
+      src={imgUrl}
+      alt="Colm Tuite"
+      {...props}
+    />
+  );
+});
+
+AvatarImage.displayName = "AvatarImage";
+
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, children, ...props }, forwardedRef) => {
+  return (
+    <AvatarPrimitive.Fallback
+      ref={forwardedRef}
+      className={cx(
+        // base
+        "cursor-pointer border border-gray-200 rounded-full p-1",
+        // className prop
+        className
+      )}
+      delayMs={600}
+      {...props}
+    >
+      {children}
+    </AvatarPrimitive.Fallback>
+  );
+});
+
+AvatarFallback.displayName = "AvatarFallback";
+
+export { AvatarRoot, AvatarImage, AvatarFallback };
+```
+
+### Usage
+
+```tsx
+import {
+  AvatarFallback,
+  AvatarImage,
+  AvatarRoot,
+} from "@/library/components/ui/avatar";
+import { CardRoot } from "@/library/components/ui/card";
+
+export default function Avatar() {
+  return (
+    <CardRoot className="flex item-center justify-center">
+      <div className="flex items-center">
+        <AvatarRoot>
+          <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44374494" />
+          <AvatarFallback>SW</AvatarFallback>
+        </AvatarRoot>
+        <AvatarRoot className="relative right-2">
+          <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44374495" />
+          <AvatarFallback>SW</AvatarFallback>
+        </AvatarRoot>
+        <AvatarRoot className="relative right-4">
+          <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44378498" />
+          <AvatarFallback>SW</AvatarFallback>
+        </AvatarRoot>
+        <AvatarRoot className="relative right-6">
+          <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44372499" />
+          <AvatarFallback>SW</AvatarFallback>
+        </AvatarRoot>
+        <AvatarRoot className="relative right-8">
+          <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/24374498" />
+          <AvatarFallback>SW</AvatarFallback>
+        </AvatarRoot>
+      </div>
+    </CardRoot>
+  );
+}
+```
+
+---
+
+Next: [Button](/documentation/button)
+
+Found a bug? Report [here](https://github.com/swastikyadav/catalystui).

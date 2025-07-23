@@ -1,0 +1,129 @@
+---
+title: Switch
+---
+
+A toggle switch component.
+
+> Known Bug: This Switch component is tightly coupled with the dark mode switch. Need to extract mode switching logic from it and keep it pure.
+
+<Switch />
+
+### Installations
+
+Install radix-ui, clsx, and tailwind-merge to use avatar component.
+
+```bash
+npm install radix-ui clsx tailwind-merge
+```
+
+Add the following function in lib/utils
+
+```ts
+import clsx, { type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cx(...args: ClassValue[]) {
+  return twMerge(clsx(...args));
+}
+```
+
+### Copy paste the component
+
+```tsx
+"use client";
+
+import React, { useEffect, useState } from "react";
+
+import { Switch as SwitchPrimitive } from "radix-ui";
+import { cx } from "@/lib/utils";
+
+const SwitchRoot = React.forwardRef<
+  React.ElementRef<typeof SwitchPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>
+>(({ className, children, ...props }, forwardedRef) => {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("mode") === "dark") {
+      setIsDark(true);
+    }
+  }, []);
+
+  return (
+    <SwitchPrimitive.Root
+      ref={forwardedRef}
+      className={cx(
+        // base
+        "w-8 h-4 bg-gray-200 border border-gray-600 rounded-4xl relative flex items-center justify-start cursor-pointer",
+        // checked
+        "data-[state=checked]:bg-blue-200",
+        // className prop
+        className
+      )}
+      checked={isDark}
+      autoFocus={false}
+      onCheckedChange={(checked) => {
+        setIsDark(checked);
+        if (checked) {
+          localStorage.setItem("mode", "dark");
+          document.documentElement.classList.add("dark");
+        } else {
+          localStorage.setItem("mode", "light");
+          document.documentElement.classList.remove("dark");
+        }
+      }}
+      {...props}
+    >
+      {children}
+    </SwitchPrimitive.Root>
+  );
+});
+
+SwitchRoot.displayName = "SwitchRoot";
+
+const SwitchThumb = React.forwardRef<
+  React.ElementRef<typeof SwitchPrimitive.Thumb>,
+  React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Thumb>
+>(({ className, ...props }, forwardedRef) => {
+  return (
+    <SwitchPrimitive.Thumb
+      ref={forwardedRef}
+      className={cx(
+        // base
+        "block w-4 h-4 bg-white border border-gray-600 rounded-full",
+        // transition and color
+        "data-[state=checked]:translate-x-4 data-[state=checked]:bg-blue-600",
+        // className prop
+        className
+      )}
+      {...props}
+    />
+  );
+});
+
+SwitchThumb.displayName = "SwitchThumb";
+
+export { SwitchRoot, SwitchThumb };
+```
+
+### Usage
+
+```tsx
+import { SwitchRoot, SwitchThumb } from "@/library/components/ui/switch";
+
+export default function Switch() {
+  return (
+    <CardRoot>
+      <SwitchRoot>
+        <SwitchThumb></SwitchThumb>
+      </SwitchRoot>
+    </CardRoot>
+  );
+}
+```
+
+---
+
+Next: [Table](/documentation/table)
+
+Found a bug? Report [here](https://github.com/swastikyadav/catalystui).

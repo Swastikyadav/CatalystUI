@@ -14,7 +14,9 @@ function HomePage() {
           11+ (& counting) ready to ship and accessible components built with
           React, TailwindCSS, and RadixUI.
         </p>
-        <Button className="cursor-pointer py-4 px-6">Get Started</Button>
+        <Link href="/documentation/why">
+          <Button className="cursor-pointer py-4 px-6">Get Started</Button>
+        </Link>
       </section>
       <section className="px-8 md:px-44">
         <ShowCase />
@@ -37,7 +39,7 @@ function HomePage() {
         <Link href="/">
           <small className="text-sm">CatalystUI</small>
         </Link>
-        <Link href="/documentation">
+        <Link href="/documentation/why">
           <small className="text-sm">Docs</small>
         </Link>
         <Link href="#">

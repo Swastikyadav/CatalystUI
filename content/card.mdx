@@ -1,0 +1,133 @@
+---
+title: Card
+---
+
+Multi purpose card component. Render anything inside the card with children props.
+
+<Card />
+
+### Installations
+
+Install @radix-ui/react-slot, clsx, and tailwind-merge to use card component.
+
+```bash
+npm install @radix-ui/react-slot clsx tailwind-merge
+```
+
+Add the following function in lib/utils
+
+```ts
+import clsx, { type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cx(...args: ClassValue[]) {
+  return twMerge(clsx(...args));
+}
+```
+
+### Copy paste the component
+
+```tsx
+import React, { ReactNode } from "react";
+
+import { Slot } from "@radix-ui/react-slot";
+import { cx } from "@/lib/utils";
+
+interface CardProps extends React.ComponentPropsWithoutRef<"div"> {
+  showShadow?: boolean;
+  asChild?: boolean;
+}
+
+const CardRoot = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ showShadow = true, className, asChild, ...props }, forwardedRef) => {
+    const Component = asChild ? Slot : "div";
+    return (
+      <Component
+        ref={forwardedRef}
+        className={cx(
+          // base
+          "relative w-full rounded-lg border p-6 text-left",
+          // shadow
+          showShadow ? "shadow-xs" : "",
+          // bg color
+          "bg-white dark:bg-[#090E1A]",
+          // border
+          "border-gray-200 dark:border-gray-800",
+          // className prop
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
+
+CardRoot.displayName = "CardRoot";
+
+function CardTitle({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <p
+      className={cx(
+        // base
+        "text-gray-800 dark:text-gray-100 text-sm",
+        className
+      )}
+    >
+      {children}
+    </p>
+  );
+}
+
+function CardDescription({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <h2
+      className={cx(
+        //base
+        "text-gray-700 dark:text-gray-200",
+        className
+      )}
+    >
+      {children}
+    </h2>
+  );
+}
+
+export { CardRoot, CardTitle, CardDescription, type CardProps };
+```
+
+### Usage
+
+```tsx
+import {
+  CardRoot,
+  CardTitle,
+  CardDescription,
+} from "@/library/components/ui/card";
+
+export default function Card() {
+  return (
+    <CardRoot>
+      <CardTitle>Card Title</CardTitle>
+      <CardDescription>This is a card description</CardDescription>
+    </CardRoot>
+  );
+}
+```
+
+---
+
+Next: [Card](/documentation/card)
+
+Found a bug? Report [here](https://github.com/swastikyadav/catalystui).

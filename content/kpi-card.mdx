@@ -1,0 +1,100 @@
+---
+title: KPI Card
+---
+
+A card designed to shows key performance indicators.
+
+<KpiCard />
+
+### Installations
+
+Install clsx, and tailwind-merge to use avatar component.
+
+```bash
+npm install clsx tailwind-merge
+```
+
+Add the following function in lib/utils
+
+```ts
+import clsx, { type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cx(...args: ClassValue[]) {
+  return twMerge(clsx(...args));
+}
+```
+
+### Copy paste the component
+
+```tsx
+import {
+  CardDescription,
+  CardRoot,
+  CardTitle,
+} from "@/library/components/ui/card";
+import { cx } from "@/lib/utils";
+import React, { ReactElement } from "react";
+
+function KpiCard({
+  kpi,
+}: {
+  kpi: {
+    title: string;
+    description: string;
+    growth: number;
+    icon: ReactElement;
+  };
+}) {
+  return (
+    <CardRoot key={kpi.title} className="w-min-3/12">
+      <article className="flex items-center justify-between">
+        <div>
+          <CardTitle>{kpi.title}</CardTitle>
+          <CardDescription className="font-bold">
+            <p className="flex items-baseline gap-2">
+              {kpi.description}{" "}
+              <span
+                className={cx(
+                  "text-xs text-green-600 dark:text-green-400",
+                  kpi.growth < 0 ? "text-red-600 dark:text-red-400" : ""
+                )}
+              >
+                {`${kpi.growth > 0 ? "+" : ""}${kpi.growth}%`}
+              </span>
+            </p>
+          </CardDescription>
+        </div>
+        <span className="text-white bg-blue-600 w-[40px] h-[40px] flex items-center justify-center rounded-lg">
+          {kpi.icon}
+        </span>
+      </article>
+    </CardRoot>
+  );
+}
+
+export default KpiCard;
+```
+
+### Usage
+
+```tsx
+import KpiCard from "@/library/blocks/kpiCard";
+
+export default function KpiCardView() {
+  return (
+    <KpiCard
+      kpi={{
+        title: "Monthly Revenue",
+        description: "$29,332",
+        growth: 23,
+        icon: <DollarSignIcon />,
+      }}
+    />
+  );
+}
+```
+
+Next: [Profile Settings Card](/documentation/profile-card)
+
+Found a bug? Report [here](https://github.com/swastikyadav/catalystui).

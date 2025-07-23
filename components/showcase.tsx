@@ -199,14 +199,7 @@ function ShowCase() {
 
         <div className="flex items-start gap-4 justify-around my-12 flex-wrap lg:flex-nowrap">
           <div className="w-full lg:w-4/12 flex flex-col items-start gap-4">
-            <KpiCard
-              kpi={{
-                title: "Monthly Revenue",
-                description: "$29,332",
-                growth: 23,
-                icon: <DollarSignIcon />,
-              }}
-            />
+            <KpiCardView />
             <div className="flex items-center">
               <AvatarRoot>
                 <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44374494" />
@@ -231,62 +224,98 @@ function ShowCase() {
               <Button>Read Docs</Button>
             </div>
             <div className="relative w-full h-[280px]">
-              <ChartContainer>
-                <LineChartRoot data={data}>
-                  <LineChartContent
-                    showSecondaryLine={true}
-                    primaryDataKey="online"
-                    secondaryDataKey="cod"
-                  />
-                </LineChartRoot>
-              </ChartContainer>
+              <LineChart />
             </div>
           </div>
           <div className="">
             <ProfilePopoverContent />
             <div className="relative h-[200px] mt-4">
-              <ChartContainer>
-                <BarGraphRoot data={data}>
-                  <BarGraphContent
-                    showSecondaryBar
-                    showXAxisLine={false}
-                    showYAxisLine={false}
-                    primaryDataKey="online"
-                    secondaryDataKey="cod"
-                  />
-                </BarGraphRoot>
-              </ChartContainer>
+              <BarChart />
             </div>
           </div>
-          <TopProductCard className="w-full lg:w-4/12" products={products} />
+          <TopProducts className="w-full lg:w-4/12" />
         </div>
-        <CardRoot>
-          <TableRoot>
-            <Table>
-              <TableCaption>Sales by country</TableCaption>
-              <TableHead>
-                <TableRow>
-                  <TableHeaderCell>Country</TableHeaderCell>
-                  <TableHeaderCell>Sales</TableHeaderCell>
-                  <TableHeaderCell>Value</TableHeaderCell>
-                  <TableHeaderCell>Bounce</TableHeaderCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {tableData.map((data) => (
-                  <TableRow key={data.id}>
-                    <TableData>{data.country}</TableData>
-                    <TableData>{data.sales.toLocaleString("en-US")}</TableData>
-                    <TableData>${data.value.toLocaleString("en-US")}</TableData>
-                    <TableData>{data.bounce}</TableData>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableRoot>
-        </CardRoot>
       </CardRoot>
     </section>
+  );
+}
+
+export function TopProducts({ className }: { className?: string }) {
+  return <TopProductCard className={className} products={products} />;
+}
+
+export function TableView() {
+  return (
+    <CardRoot>
+      <TableRoot>
+        <Table>
+          <TableCaption>Sales by country</TableCaption>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Country</TableHeaderCell>
+              <TableHeaderCell>Sales</TableHeaderCell>
+              <TableHeaderCell>Value</TableHeaderCell>
+              <TableHeaderCell>Bounce</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {tableData.map((data) => (
+              <TableRow key={data.id}>
+                <TableData>{data.country}</TableData>
+                <TableData>{data.sales.toLocaleString("en-US")}</TableData>
+                <TableData>${data.value.toLocaleString("en-US")}</TableData>
+                <TableData>{data.bounce}</TableData>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableRoot>
+    </CardRoot>
+  );
+}
+
+export function LineChart({ showTooltip = true }: { showTooltip?: boolean }) {
+  return (
+    <ChartContainer>
+      <LineChartRoot data={data}>
+        <LineChartContent
+          showSecondaryLine={true}
+          primaryDataKey="online"
+          secondaryDataKey="cod"
+          showTooltip={showTooltip}
+        />
+      </LineChartRoot>
+    </ChartContainer>
+  );
+}
+
+export function BarChart({ showTooltip = true }: { showTooltip?: boolean }) {
+  return (
+    <ChartContainer>
+      <BarGraphRoot data={data}>
+        <BarGraphContent
+          showSecondaryBar
+          showXAxisLine={false}
+          showYAxisLine={false}
+          primaryDataKey="online"
+          secondaryDataKey="cod"
+          showTooltip={showTooltip}
+        />
+      </BarGraphRoot>
+    </ChartContainer>
+  );
+}
+
+export function KpiCardView() {
+  return (
+    <KpiCard
+      kpi={{
+        title: "Monthly Revenue",
+        description: "$29,332",
+        growth: 23,
+        icon: <DollarSignIcon />,
+      }}
+    />
   );
 }
 
