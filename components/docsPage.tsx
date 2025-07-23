@@ -2,22 +2,18 @@ import { ReactElement, ReactNode } from "react";
 
 import { getMdxContent } from "@/lib/mdx";
 
-export default async function DocsPage({
+export default function DocsPage({
   children,
-  params,
+  content,
+  frontmatter,
 }: {
   children: ReactNode;
-  params: { slug: string };
-}) {
-  const { slug } = await params;
-  const { content, frontmatter } = (await getMdxContent(slug)) as {
-    content: ReactElement;
-    frontmatter: {
-      title: string;
-      description?: string;
-    };
+  content: ReactElement;
+  frontmatter: {
+    title: string;
+    description?: string;
   };
-
+}) {
   return (
     <div className="flex">
       {children}

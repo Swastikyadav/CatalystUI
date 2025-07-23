@@ -1,18 +1,25 @@
+import React, { ReactElement } from "react";
+
 import DocsPage from "@/components/docsPage";
 import Header from "@/components/header";
-import React, { ReactNode } from "react";
+import { getMdxContent } from "@/lib/mdx";
 
-function DocsLayout({
-  children,
-  params,
-}: {
-  children: ReactNode;
-  params: { slug: string };
-}) {
+// @ts-expect-error - Disables types checking for props of this component
+async function DocsLayout({ children, params }: DocsLayoutProps) {
+  const { slug } = await params;
+  const { content, frontmatter } = (await getMdxContent(slug)) as {
+    content: ReactElement;
+    frontmatter: {
+      title: string;
+      description?: string;
+    };
+  };
   return (
     <>
       <Header />
-      <DocsPage params={params}>{children}</DocsPage>
+      <DocsPage content={content} frontmatter={frontmatter}>
+        {children}
+      </DocsPage>
     </>
   );
 }
