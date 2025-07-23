@@ -34,11 +34,13 @@ function Root({
 function Title({
   onClose,
   className,
+  showCloseOnDesktop = false,
   children,
   ...props
 }: {
   onClose: () => void;
   className?: string;
+  showCloseOnDesktop?: boolean;
   children: ReactNode;
 }) {
   return (
@@ -53,7 +55,10 @@ function Title({
         {...props}
       >
         <span className="flex items-center gap-2">{children}</span>
-        <XIcon onClick={onClose} className="block md:hidden" />
+        <XIcon
+          onClick={onClose}
+          className={cx("block", showCloseOnDesktop ? "" : "md:hidden")}
+        />
       </nav>
     </>
   );

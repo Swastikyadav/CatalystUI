@@ -2,6 +2,8 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@plugin "@tailwindcss/typography";
+
 @theme {
   --animate-sidebar-slide-left-and-fade: sidebarSlideLeftAndFade 150ms;
   --animate-sidebar-slide-right-and-fade: sidebarSlideRightAndFade 150ms ease-in;
