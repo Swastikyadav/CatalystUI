@@ -1,5 +1,7 @@
 {
-  "app/documentation/[slug]/page.tsx": {
-    "includeFiles": "content/**"
+  "functions": {
+    "app/documentation/[slug]/page.tsx": {
+      "includeFiles": "content/**"
+    }
   }
 }
