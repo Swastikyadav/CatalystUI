@@ -26,7 +26,7 @@ Connect with me on [LinkedIn](https://linkedin.com/in/swastikyadav).
 
 ### Colors
 
-![colors](/images/color.png)
+![colors](https://catalystui.vercel.app/images/color.png)
 
 - brand
   - light (#4F6AF3)
@@ -66,7 +66,7 @@ Here are some popular type scales, ordered from smallest to largest:
 I am picking **1.200** as my type scale.
 So here is our pre-defined font sizes rounded off for simplicity.
 
-![typography](/images/typography.png)
+![typography](https://catalystui.vercel.app/images/typography.png)
 
 #### Typeface
 
