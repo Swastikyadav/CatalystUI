@@ -1,12 +1,17 @@
-import fs from "fs";
-import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import { mdxComponents } from "@/components/mdxComponents";
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export async function getMdxContent(slug: string) {
-  const filePath = path.join(process.cwd(), "public", "content", `${slug}.mdx`);
-  const raw = fs.readFileSync(filePath, "utf-8");
+  const res = await fetch(`${BASE_URL}/content/${slug}.mdx`);
+
+  if (!res.ok) {
+    throw new Error(`MDX file not found at /content/${slug}.mdx`);
+  }
+
+  const raw = await res.text();
 
   const { content, frontmatter } = await compileMDX({
     source: raw,
