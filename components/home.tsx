@@ -28,12 +28,16 @@ function HomePage() {
         <p className="py-8 lg:px-24 text-gray-800 text-lg">
           Build your MVP with our CatalystUI components library OR let us do
           that for you.{" "}
-          <span className="font-bold">Your idea to MVP in 2 weeks</span>.
+          <span className="font-bold">Your idea to MVP in a weekend</span>.
         </p>
         <p className="pb-8 lg:px-24 text-gray-800 text-lg">
-          Flat $299 for an MVP.
+          Flat $99 for an MVP.
         </p>
-        <Button className="cursor-pointer py-4 px-6">Build My Prototype</Button>
+        <Link href="https://cal.com/swastikyadav/catalystui" target="_blank">
+          <Button className="cursor-pointer py-4 px-6">
+            Build My Prototype
+          </Button>
+        </Link>
       </section>
       <footer className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 border-t border-gray-200 text-gray-800 py-4 px-8 lg:px-16">
         <Link href="/">
@@ -42,7 +46,7 @@ function HomePage() {
         <Link href="/documentation/why">
           <small className="text-sm">Docs</small>
         </Link>
-        <Link href="#">
+        <Link href="https://cal.com/swastikyadav/catalystui">
           <small className="text-sm">Book A Call</small>
         </Link>
         <Link href="https://github.com/swastikyadav/catalystui" target="_blank">
