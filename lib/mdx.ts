@@ -5,7 +5,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { mdxComponents } from "@/components/mdxComponents";
 
 export async function getMdxContent(slug: string) {
-  const filePath = path.join(process.cwd(), "content", `${slug}.mdx`);
+  const filePath = path.join(process.cwd(), "public", "content", `${slug}.mdx`);
   const raw = fs.readFileSync(filePath, "utf-8");
 
   const { content, frontmatter } = await compileMDX({
