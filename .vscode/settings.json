@@ -4,5 +4,6 @@
   "workbench.colorTheme": "Cursor Dark",
   "[mdx]": {
     "editor.formatOnSave": false
-  }
+  },
+  "editor.tabSize": 2
 }

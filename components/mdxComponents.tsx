@@ -32,6 +32,7 @@ import {
   Grid4,
 } from "@/library/blocks/bentoGrid";
 import { ProfilePopoverContent } from "@/library/blocks/profileCard";
+import InviteCard from "@/library/blocks/inviteCard";
 
 function Avatar() {
   return (
@@ -176,6 +177,35 @@ function TopProductsView() {
   );
 }
 
+const membersList = [
+  {
+    image: "https://avatars.githubusercontent.com/u/44374494",
+    name: "Swastik Yadav",
+    email: "s.yadav@gmail.com",
+    badge: "owner",
+  },
+  {
+    image: "https://avatars.githubusercontent.com/u/44373494",
+    name: "Jon Tony",
+    email: "j.tony@gmail.com",
+    badge: "",
+  },
+  {
+    image: "https://avatars.githubusercontent.com/u/44474494",
+    name: "Tina Wong",
+    email: "t.wong@gmail.com",
+    badge: "",
+  },
+];
+
+function InviteCardView() {
+  return (
+    <CardRoot className="not-prose">
+      <InviteCard members={membersList} className="w-full" />
+    </CardRoot>
+  );
+}
+
 export const mdxComponents = {
   Avatar,
   ButtonSet,
@@ -189,4 +219,5 @@ export const mdxComponents = {
   KpiCard,
   ProfileSettingsCard,
   TopProductsView,
+  InviteCardView,
 };

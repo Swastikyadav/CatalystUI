@@ -49,6 +49,11 @@ const docLinks = {
       path: "/documentation/top-products-card",
       slug: "top-products-card",
     },
+    {
+      name: "Invite Members Card",
+      path: "/documentation/invite-card",
+      slug: "invite-card",
+    },
   ],
   Templates: [
     {
