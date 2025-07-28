@@ -8,7 +8,7 @@ function HomePage() {
     <>
       <section className="py-32 px-8 md:px-16 lg:px-44 text-center">
         <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-800">
-          React components library for faster product prototyping
+          React components library for rapid product prototyping
         </h2>
         <p className="py-8 lg:px-24 text-gray-800 text-lg">
           11+ (& counting) ready to ship and accessible components built with
