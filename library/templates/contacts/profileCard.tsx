@@ -1,10 +1,5 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
-import {
-  AvatarRoot,
-  AvatarImage,
-  AvatarFallback,
-} from "@/library/components/ui/avatar";
 import {
   PopoverRoot,
   PopoverTrigger,
@@ -15,35 +10,26 @@ import { SwitchRoot, SwitchThumb } from "@/library/components/ui/switch";
 import {
   LinkIcon,
   LogOutIcon,
-  MoonIcon,
   SettingsIcon,
+  SwitchCameraIcon,
   UserIcon,
 } from "lucide-react";
-import NavLink from "./common/navLink";
+import NavLink from "./navLinks";
 import { cx } from "@/lib/utils";
 
 const profileLinks = [
   { icon: <UserIcon width={18} />, value: "Profile", link: "#" },
   { icon: <SettingsIcon width={18} />, value: "Account Settings", link: "#" },
   { icon: <LinkIcon width={18} />, value: "Integration", link: "#" },
-  { icon: <MoonIcon width={18} />, value: "Dark Mode", link: "#" },
+  { icon: <SwitchCameraIcon width={18} />, value: "Public Profile", link: "#" },
 ];
 
-function ProfilePopoverRoot() {
+function ProfilePopoverRoot({ children }: { children: ReactElement }) {
   return (
     <PopoverRoot>
-      <PopoverTrigger asChild>
-        <AvatarRoot>
-          <AvatarImage imgUrl="https://avatars.githubusercontent.com/u/44374494" />
-          <AvatarFallback>SW</AvatarFallback>
-        </AvatarRoot>
-      </PopoverTrigger>
+      <PopoverTrigger asChild>{children}</PopoverTrigger>
       <PopoverPortal>
-        <PopoverContent
-          className="mr-4 z-100"
-          autoFocus={false}
-          sideOffset={10}
-        >
+        <PopoverContent className="z-100" autoFocus={false} sideOffset={10}>
           <ProfilePopoverContent />
         </PopoverContent>
       </PopoverPortal>
@@ -55,7 +41,7 @@ function ProfilePopoverContent({ className }: { className?: string }) {
   return (
     <div
       className={cx(
-        "border border-gray-200 dark:border-gray-800 py-2 w-3xs bg-white dark:bg-[#090E1A] rounded-lg text-sm",
+        "border border-gray-200 dark:border-gray-800 py-2 w-[200px] bg-white dark:bg-[#090E1A] rounded-lg text-sm",
         className
       )}
     >
