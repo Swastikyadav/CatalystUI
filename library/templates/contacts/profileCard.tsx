@@ -41,7 +41,7 @@ function ProfilePopoverContent({ className }: { className?: string }) {
   return (
     <div
       className={cx(
-        "border border-gray-200 dark:border-gray-800 py-2 w-[200px] bg-white dark:bg-[#090E1A] rounded-lg text-sm",
+        "border border-gray-800 py-2 w-[200px] bg-[#090E1A] rounded-lg text-sm",
         className
       )}
     >
@@ -50,7 +50,7 @@ function ProfilePopoverContent({ className }: { className?: string }) {
           return (
             <div
               key="dark-mode-toggle"
-              className="flex items-center justify-between pr-3 hover:bg-gray-100 dark:hover:bg-gray-600"
+              className="flex items-center justify-between pr-3 hover:bg-gray-600"
             >
               <NavLink
                 key={link.value}
@@ -59,7 +59,7 @@ function ProfilePopoverContent({ className }: { className?: string }) {
                   value: link.value,
                   link: link.link,
                 }}
-                className="hover:bg-gray-100 dark:hover:bg-gray-600 p-1 dark:text-gray-100"
+                className="hover:bg-gray-600 p-1 text-gray-100"
               />
               <SwitchRoot>
                 <SwitchThumb />
@@ -76,11 +76,11 @@ function ProfilePopoverContent({ className }: { className?: string }) {
               value: link.value,
               link: link.link,
             }}
-            className="hover:bg-gray-100 dark:hover:bg-gray-600 p-1 dark:text-gray-100"
+            className="hover:bg-gray-600 p-1 text-gray-100"
           />
         );
       })}
-      <hr className="text-gray-200 dark:text-gray-800 my-3" />
+      <hr className="text-gray-800 my-3" />
       <NavLink
         key="signout"
         link={{
@@ -88,7 +88,7 @@ function ProfilePopoverContent({ className }: { className?: string }) {
           value: "Sign Out",
           link: "#",
         }}
-        className="hover:bg-gray-100 dark:hover:bg-gray-600 p-1 dark:text-gray-100"
+        className="hover:bg-gray-600 p-1 text-gray-100"
       />
     </div>
   );

@@ -21,6 +21,15 @@ import {
   AvatarRoot,
 } from "../../components/ui/avatar";
 import { ProfilePopoverRoot } from "./profileCard";
+import {
+  Table,
+  TableBody,
+  TableData,
+  TableHead,
+  TableHeaderCell,
+  TableRoot,
+  TableRow,
+} from "@/library/components/ui/table";
 
 const navLinks = [
   { icon: <ContactIcon />, value: "Contacts", link: "#", active: true },
@@ -31,11 +40,84 @@ const navLinks = [
   { icon: <ChartNetworkIcon />, value: "Coverage", link: "#" },
 ];
 
+const contacts = [
+  {
+    name: "Ava Patel",
+    image: "https://i.pravatar.cc/150?img=1",
+    email: "ava.patel@example.com",
+    notes: 12,
+    organization: "TechNova",
+  },
+  {
+    name: "Liam Chen",
+    image: "https://i.pravatar.cc/150?img=2",
+    email: "liam.chen@example.com",
+    notes: 8,
+    organization: "ByteFoundry",
+  },
+  {
+    name: "Sophia Nair",
+    image: "https://i.pravatar.cc/150?img=3",
+    email: "sophia.nair@example.com",
+    notes: 23,
+    organization: "PixelForge",
+  },
+  {
+    name: "Noah Kim",
+    image: "https://i.pravatar.cc/150?img=4",
+    email: "noah.kim@example.com",
+    notes: 5,
+    organization: "StackFlow Labs",
+  },
+  {
+    name: "Mia Singh",
+    image: "https://i.pravatar.cc/150?img=5",
+    email: "mia.singh@example.com",
+    notes: 19,
+    organization: "LambdaWorks",
+  },
+  {
+    name: "Ethan Das",
+    image: "https://i.pravatar.cc/150?img=6",
+    email: "ethan.das@example.com",
+    notes: 7,
+    organization: "Nextware",
+  },
+  {
+    name: "Isabella Roy",
+    image: "https://i.pravatar.cc/150?img=7",
+    email: "isabella.roy@example.com",
+    notes: 14,
+    organization: "NeuroGrid",
+  },
+  {
+    name: "Arjun Mehta",
+    image: "https://i.pravatar.cc/150?img=8",
+    email: "arjun.mehta@example.com",
+    notes: 11,
+    organization: "CodeSpire",
+  },
+  {
+    name: "Ella Verma",
+    image: "https://i.pravatar.cc/150?img=9",
+    email: "ella.verma@example.com",
+    notes: 9,
+    organization: "Designly",
+  },
+  {
+    name: "Ryan Kapoor",
+    image: "https://i.pravatar.cc/150?img=10",
+    email: "ryan.kapoor@example.com",
+    notes: 16,
+    organization: "FrontendHub",
+  },
+];
+
 function ContactsDashboard() {
   const [open, setOpen] = useState(true);
   return (
     <div className="flex">
-      <Sidebar.Root open={open} className="z-100 dark relative">
+      <Sidebar.Root open={open} className="z-100 dark">
         <Sidebar.Title onClose={() => setOpen(false)}>
           <MailIcon />
         </Sidebar.Title>
@@ -46,7 +128,7 @@ function ContactsDashboard() {
         </Sidebar.Description>
 
         <ProfilePopoverRoot>
-          <CardRoot className="text-gray-200 text-sm absolute left-0 bottom-0 dark:bg-blue-950 rounded-none flex items-center justify-between cursor-pointer">
+          <CardRoot className="text-gray-200 dark:bg-blue-950 text-sm absolute left-0 bottom-0 rounded-none flex items-center justify-between cursor-pointer">
             <div className="flex gap-2">
               <AvatarRoot>
                 <AvatarImage
@@ -74,6 +156,50 @@ function ContactsDashboard() {
           />
           <p>Contacts</p>
         </header>
+
+        <div className="p-6">
+          <CardRoot className="w-full">
+            <TableRoot>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableHeaderCell>Contact</TableHeaderCell>
+                    <TableHeaderCell>Email</TableHeaderCell>
+                    <TableHeaderCell>Notes</TableHeaderCell>
+                    <TableHeaderCell>Organization</TableHeaderCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {contacts.map((data) => (
+                    <TableRow
+                      key={data.image}
+                      className="cursor-pointer hover:bg-gray-100"
+                    >
+                      <TableData className="flex gap-4">
+                        <AvatarRoot>
+                          <AvatarImage
+                            imgUrl={data.image}
+                            className="w-10 h-10 rounded-lg"
+                          />
+                          <AvatarFallback>SW</AvatarFallback>
+                        </AvatarRoot>
+                        <div>
+                          <p>{data.name}</p>
+                          <small className="text-bold">Software Engineer</small>
+                        </div>
+                      </TableData>
+                      <TableData>{data.email}</TableData>
+                      <TableData className="cursor-pointer text-blue-600 underline">
+                        {data.notes}
+                      </TableData>
+                      <TableData>{data.organization}</TableData>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableRoot>
+          </CardRoot>
+        </div>
       </main>
     </div>
   );
