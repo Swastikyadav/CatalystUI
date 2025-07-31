@@ -116,7 +116,10 @@ const contacts = [
 function ContactsDashboard() {
   const [open, setOpen] = useState(true);
   return (
-    <div className="flex">
+    <div className="flex mt-10">
+      <span className="w-full p-2 bg-blue-900 text-gray-200 absolute top-0 z-100 text-center">
+        This dashboard is work in progress!
+      </span>
       <Sidebar.Root open={open} className="z-100 dark">
         <Sidebar.Title onClose={() => setOpen(false)}>
           <MailIcon />
