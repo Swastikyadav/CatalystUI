@@ -47,6 +47,7 @@ const contacts = [
     email: "ava.patel@example.com",
     notes: 12,
     organization: "TechNova",
+    profession: "Software Engineer",
   },
   {
     name: "Liam Chen",
@@ -54,6 +55,7 @@ const contacts = [
     email: "liam.chen@example.com",
     notes: 8,
     organization: "ByteFoundry",
+    profession: "Journalist",
   },
   {
     name: "Sophia Nair",
@@ -61,6 +63,7 @@ const contacts = [
     email: "sophia.nair@example.com",
     notes: 23,
     organization: "PixelForge",
+    profession: "Software Engineer",
   },
   {
     name: "Noah Kim",
@@ -68,6 +71,7 @@ const contacts = [
     email: "noah.kim@example.com",
     notes: 5,
     organization: "StackFlow Labs",
+    profession: "Editor",
   },
   {
     name: "Mia Singh",
@@ -75,6 +79,7 @@ const contacts = [
     email: "mia.singh@example.com",
     notes: 19,
     organization: "LambdaWorks",
+    profession: "Chief Marketing Officer",
   },
   {
     name: "Ethan Das",
@@ -82,6 +87,7 @@ const contacts = [
     email: "ethan.das@example.com",
     notes: 7,
     organization: "Nextware",
+    profession: "SEO Expert",
   },
   {
     name: "Isabella Roy",
@@ -89,6 +95,7 @@ const contacts = [
     email: "isabella.roy@example.com",
     notes: 14,
     organization: "NeuroGrid",
+    profession: "Chief Executive Officer",
   },
   {
     name: "Arjun Mehta",
@@ -96,6 +103,7 @@ const contacts = [
     email: "arjun.mehta@example.com",
     notes: 11,
     organization: "CodeSpire",
+    profession: "Content Head",
   },
   {
     name: "Ella Verma",
@@ -103,6 +111,7 @@ const contacts = [
     email: "ella.verma@example.com",
     notes: 9,
     organization: "Designly",
+    profession: "Design Head",
   },
   {
     name: "Ryan Kapoor",
@@ -110,6 +119,7 @@ const contacts = [
     email: "ryan.kapoor@example.com",
     notes: 16,
     organization: "FrontendHub",
+    profession: "Senior Frontend Engineer",
   },
 ];
 
@@ -188,7 +198,7 @@ function ContactsDashboard() {
                         </AvatarRoot>
                         <div>
                           <p>{data.name}</p>
-                          <small className="text-bold">Software Engineer</small>
+                          <small className="text-bold">{data.profession}</small>
                         </div>
                       </TableData>
                       <TableData>{data.email}</TableData>

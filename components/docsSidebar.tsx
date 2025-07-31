@@ -61,6 +61,11 @@ const docLinks = {
       path: "/documentation/sales-overview",
       slug: "sales-overview",
     },
+    {
+      name: "Contacts Management",
+      path: "/documentation/contacts-management",
+      slug: "contacts-management",
+    },
   ],
 };
 
