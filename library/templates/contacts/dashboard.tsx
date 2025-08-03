@@ -30,6 +30,18 @@ import {
   TableRoot,
   TableRow,
 } from "@/library/components/ui/table";
+import {
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/library/components/ui/sheet";
+import { Button } from "@/library/components/ui/button";
 
 const navLinks = [
   { icon: <ContactIcon />, value: "Contacts", link: "#", active: true },
@@ -168,6 +180,39 @@ function ContactsDashboard() {
             className="cursor-pointer"
           />
           <p>Contacts</p>
+          <div className="flex justify-center">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="secondary">Open Sheet</Button>
+              </SheetTrigger>
+              <SheetContent className="sm:max-w-xl z-100">
+                <SheetHeader>
+                  <SheetTitle>Account Created Successfully</SheetTitle>
+                  <SheetDescription className="mt-1 text-sm">
+                    Your account has been created successfully. You can now
+                    login to your account. For more information, please contact
+                    us.
+                  </SheetDescription>
+                </SheetHeader>
+                <SheetBody>
+                  This is they body of the Sheet, content goes here.
+                </SheetBody>
+                <SheetFooter className="mt-6">
+                  <SheetClose asChild>
+                    <Button
+                      className="mt-2 w-full sm:mt-0 sm:w-fit"
+                      variant="secondary"
+                    >
+                      Go back
+                    </Button>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button className="w-full sm:w-fit">Ok, got it!</Button>
+                  </SheetClose>
+                </SheetFooter>
+              </SheetContent>
+            </Sheet>
+          </div>
         </header>
 
         <div className="p-6">
