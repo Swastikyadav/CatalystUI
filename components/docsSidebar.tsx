@@ -23,6 +23,7 @@ const docLinks = {
     { name: "Popover", path: "/documentation/popover", slug: "popover" },
     { name: "Switch", path: "/documentation/switch", slug: "switch" },
     { name: "Table", path: "/documentation/table", slug: "table" },
+    { name: "Sheet", path: "/documentation/sheet", slug: "sheet" },
   ],
   Visualization: [
     {

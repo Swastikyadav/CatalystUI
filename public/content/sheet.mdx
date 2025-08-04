@@ -1,3 +1,33 @@
+---
+title: Sheet
+---
+
+A sheet component using native card and Radix dialog.
+
+<SheetView />
+
+### Installations
+
+Install radix-ui, clsx, and tailwind-merge to use avatar component.
+
+```bash
+npm install radix-ui clsx tailwind-merge
+```
+
+Add the following function in lib/utils
+
+```ts
+import clsx, { type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cx(...args: ClassValue[]) {
+  return twMerge(clsx(...args));
+}
+```
+
+### Copy paste the component
+
+```tsx
 import * as React from "react";
 import { Dialog as SheetPrimitives } from "radix-ui";
 import { XIcon } from "lucide-react";
@@ -46,7 +76,7 @@ const SheetOverlay = React.forwardRef<
       ref={forwardedRef}
       className={cx(
         // base
-        "fixed inset-0 z-500 overflow-y-auto",
+        "fixed inset-0 z-50 overflow-y-auto",
         // background color
         "bg-black/30",
         // transition
@@ -190,3 +220,63 @@ export {
   SheetTitle,
   SheetTrigger,
 };
+```
+
+### Usage
+
+```tsx
+import {
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/library/components/ui/sheet";
+
+function SheetView() {
+  return (
+    <div className="flex justify-center">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="secondary">Open Sheet</Button>
+        </SheetTrigger>
+        <SheetContent className="sm:max-w-xl z-100">
+          <SheetHeader>
+            <SheetTitle>Account Created Successfully</SheetTitle>
+            <SheetDescription className="mt-1 text-sm">
+              Your account has been created successfully. You can now login to
+              your account. For more information, please contact us.
+            </SheetDescription>
+          </SheetHeader>
+          <SheetBody>
+            This is they body of the Sheet, content goes here.
+          </SheetBody>
+          <SheetFooter className="mt-6">
+            <SheetClose asChild>
+              <Button
+                className="mt-2 w-full sm:mt-0 sm:w-fit"
+                variant="secondary"
+              >
+                Go back
+              </Button>
+            </SheetClose>
+            <SheetClose asChild>
+              <Button className="w-full sm:w-fit">Ok, got it!</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+}
+```
+
+---
+
+Next: [Line Chart](/documentation/line-chart)
+
+Found a bug? Report [here](https://github.com/swastikyadav/catalystui).

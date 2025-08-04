@@ -33,6 +33,17 @@ import {
 } from "@/library/blocks/bentoGrid";
 import { ProfilePopoverContent } from "@/library/blocks/profileCard";
 import InviteCard from "@/library/blocks/inviteCard";
+import {
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/library/components/ui/sheet";
 
 function Avatar() {
   return (
@@ -206,6 +217,45 @@ function InviteCardView() {
   );
 }
 
+function SheetView() {
+  return (
+    <CardRoot className="flex justify-center not-prose">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="secondary" className="cursor-pointer">
+            Open Sheet
+          </Button>
+        </SheetTrigger>
+        <SheetContent className="sm:max-w-lg z-100">
+          <SheetHeader>
+            <SheetTitle>Account Created Successfully</SheetTitle>
+            <SheetDescription className="mt-1 text-sm">
+              Your account has been created successfully. You can now login to
+              your account. For more information, please contact us.
+            </SheetDescription>
+          </SheetHeader>
+          <SheetBody>
+            This is they body of the Sheet, content goes here.
+          </SheetBody>
+          <SheetFooter className="mt-6">
+            <SheetClose asChild>
+              <Button
+                className="mt-2 w-full sm:mt-0 sm:w-fit"
+                variant="secondary"
+              >
+                Go back
+              </Button>
+            </SheetClose>
+            <SheetClose asChild>
+              <Button className="w-full sm:w-fit">Ok, got it!</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    </CardRoot>
+  );
+}
+
 export const mdxComponents = {
   Avatar,
   ButtonSet,
@@ -220,4 +270,5 @@ export const mdxComponents = {
   ProfileSettingsCard,
   TopProductsView,
   InviteCardView,
+  SheetView,
 };
