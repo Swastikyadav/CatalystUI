@@ -57,14 +57,9 @@ const docLinks = {
   ],
   Templates: [
     {
-      name: "Sales Overview",
-      path: "/documentation/sales-overview",
-      slug: "sales-overview",
-    },
-    {
-      name: "Contacts Management",
-      path: "/documentation/contacts-management",
-      slug: "contacts-management",
+      name: "Templates",
+      path: "/documentation/templates",
+      slug: "templates",
     },
   ],
 };
