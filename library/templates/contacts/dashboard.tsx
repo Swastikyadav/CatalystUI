@@ -138,10 +138,7 @@ const contacts = [
 function ContactsDashboard() {
   const [open, setOpen] = useState(true);
   return (
-    <div className="flex mt-10">
-      <span className="w-full p-2 bg-blue-900 text-gray-200 absolute top-0 z-100 text-center">
-        This dashboard is work in progress!
-      </span>
+    <div className="flex">
       <Sidebar.Root open={open} className="z-100 dark">
         <Sidebar.Title onClose={() => setOpen(false)}>
           <MailIcon />
@@ -180,39 +177,9 @@ function ContactsDashboard() {
             className="cursor-pointer"
           />
           <p>Contacts</p>
-          <div className="flex justify-center">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="secondary">Open Sheet</Button>
-              </SheetTrigger>
-              <SheetContent className="sm:max-w-xl z-100">
-                <SheetHeader>
-                  <SheetTitle>Account Created Successfully</SheetTitle>
-                  <SheetDescription className="mt-1 text-sm">
-                    Your account has been created successfully. You can now
-                    login to your account. For more information, please contact
-                    us.
-                  </SheetDescription>
-                </SheetHeader>
-                <SheetBody>
-                  This is they body of the Sheet, content goes here.
-                </SheetBody>
-                <SheetFooter className="mt-6">
-                  <SheetClose asChild>
-                    <Button
-                      className="mt-2 w-full sm:mt-0 sm:w-fit"
-                      variant="secondary"
-                    >
-                      Go back
-                    </Button>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Button className="w-full sm:w-fit">Ok, got it!</Button>
-                  </SheetClose>
-                </SheetFooter>
-              </SheetContent>
-            </Sheet>
-          </div>
+          <span className="w-full text-red-300">
+            This dashboard is work in progress!
+          </span>
         </header>
 
         <div className="p-6">
@@ -225,14 +192,12 @@ function ContactsDashboard() {
                     <TableHeaderCell>Email</TableHeaderCell>
                     <TableHeaderCell>Notes</TableHeaderCell>
                     <TableHeaderCell>Organization</TableHeaderCell>
+                    <TableHeaderCell>Details</TableHeaderCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {contacts.map((data) => (
-                    <TableRow
-                      key={data.image}
-                      className="cursor-pointer hover:bg-gray-100"
-                    >
+                    <TableRow key={data.image} className="hover:bg-gray-100">
                       <TableData className="flex gap-4">
                         <AvatarRoot>
                           <AvatarImage
@@ -251,6 +216,48 @@ function ContactsDashboard() {
                         {data.notes}
                       </TableData>
                       <TableData>{data.organization}</TableData>
+                      <TableData className="cursor-pointer">
+                        <div className="">
+                          <Sheet>
+                            <SheetTrigger asChild>
+                              <p className="text-blue-600 underline">
+                                View Details
+                              </p>
+                            </SheetTrigger>
+                            <SheetContent className="sm:max-w-xl z-100">
+                              <SheetHeader>
+                                <SheetTitle>
+                                  Account Created Successfully
+                                </SheetTitle>
+                                <SheetDescription className="mt-1 text-sm">
+                                  Your account has been created successfully.
+                                  You can now login to your account. For more
+                                  information, please contact us.
+                                </SheetDescription>
+                              </SheetHeader>
+                              <SheetBody>
+                                This is they body of the Sheet, content goes
+                                here.
+                              </SheetBody>
+                              <SheetFooter className="mt-6">
+                                <SheetClose asChild>
+                                  <Button
+                                    className="mt-2 w-full sm:mt-0 sm:w-fit"
+                                    variant="secondary"
+                                  >
+                                    Go back
+                                  </Button>
+                                </SheetClose>
+                                <SheetClose asChild>
+                                  <Button className="w-full sm:w-fit">
+                                    Ok, got it!
+                                  </Button>
+                                </SheetClose>
+                              </SheetFooter>
+                            </SheetContent>
+                          </Sheet>
+                        </div>
+                      </TableData>
                     </TableRow>
                   ))}
                 </TableBody>
