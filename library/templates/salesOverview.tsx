@@ -157,7 +157,7 @@ const products = [
     price: 109.95,
     orders: "12,842",
     category: "men's clothing",
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
     rating: {
       rate: 3.9,
       count: 120,
@@ -170,7 +170,7 @@ const products = [
     orders: "2,421",
     category: "men's clothing",
     image:
-      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
     rating: {
       rate: 4.1,
       count: 259,
@@ -182,7 +182,7 @@ const products = [
     price: 55.99,
     orders: "5,921",
     category: "men's clothing",
-    image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+    image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png",
     rating: {
       rate: 4.7,
       count: 500,
@@ -194,7 +194,7 @@ const products = [
     price: 15.99,
     orders: "921",
     category: "men's clothing",
-    image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+    image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_t.png",
     rating: {
       rate: 2.1,
       count: 430,
@@ -206,7 +206,7 @@ const products = [
     price: 695,
     orders: "8,232",
     category: "jewelery",
-    image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+    image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_t.png",
     rating: {
       rate: 4.6,
       count: 400,
