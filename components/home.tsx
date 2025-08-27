@@ -2,6 +2,7 @@ import { Button } from "@/library/components/ui/button";
 import React from "react";
 import ShowCase from "@/components/showcase";
 import Link from "next/link";
+import Image from "next/image";
 
 function HomePage() {
   return (
@@ -22,7 +23,7 @@ function HomePage() {
         <ShowCase />
       </section>
       <section className="py-32 px-8 md:px-16 lg:px-44 text-center">
-        <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold text-gray-800">
+        {/* <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold text-gray-800">
           Want custom components or product prototype?
         </h2>
         <p className="py-8 lg:px-24 text-gray-800 text-lg">
@@ -37,7 +38,44 @@ function HomePage() {
           <Button className="cursor-pointer py-4 px-6">
             Build My Prototype
           </Button>
-        </Link>
+        </Link> */}
+
+        <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold text-gray-800">
+          Dashboard Templates
+        </h2>
+
+        <div className="mt-8 flex flex-col justify-center items-center">
+          <div className="flex flex-col items-start gap-2">
+            <Image
+              src="/images/sot.png"
+              width={800}
+              height={500}
+              alt="sales-overview-dashboard"
+              className="border-2 border-gray-200 rounded"
+            />
+            <Link
+              href="/templates/salesoverview"
+              className="underline text-blue-500"
+            >
+              Live Preview
+            </Link>
+          </div>
+          <div className="flex flex-col items-start gap-2">
+            <Image
+              src="/images/cmt.png"
+              width={800}
+              height={500}
+              alt="contacts-dashboard"
+              className="border-2 border-gray-200 rounded mt-8"
+            />
+            <Link
+              href="/templates/contactsdashboard"
+              className="underline text-blue-500"
+            >
+              Live Preview
+            </Link>
+          </div>
+        </div>
       </section>
       <footer className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 border-t border-gray-200 text-gray-800 py-4 px-8 lg:px-16">
         <Link href="/">
@@ -46,9 +84,9 @@ function HomePage() {
         <Link href="/documentation/why">
           <small className="text-sm">Docs</small>
         </Link>
-        <Link href="https://cal.com/swastikyadav/catalystui">
+        {/* <Link href="https://cal.com/swastikyadav/catalystui">
           <small className="text-sm">Book A Call</small>
-        </Link>
+        </Link> */}
         <Link href="https://github.com/swastikyadav/catalystui" target="_blank">
           <small className="text-sm">GitHub</small>
         </Link>
