@@ -12,6 +12,7 @@ import {
   MegaphoneIcon,
   PanelLeftIcon,
   PanelsTopLeftIcon,
+  StarIcon,
 } from "lucide-react";
 import NavLink from "./navLinks";
 import { CardRoot } from "@/library/components/ui/card";
@@ -33,10 +34,7 @@ import {
 import {
   Sheet,
   SheetBody,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -177,9 +175,6 @@ function ContactsDashboard() {
             className="cursor-pointer"
           />
           <p>Contacts</p>
-          <span className="w-full text-red-300">
-            This dashboard is work in progress!
-          </span>
         </header>
 
         <div className="p-6">
@@ -196,7 +191,7 @@ function ContactsDashboard() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {contacts.map((data) => (
+                  {contacts.map((data, idx) => (
                     <TableRow key={data.image} className="hover:bg-gray-100">
                       <TableData className="flex gap-4">
                         <AvatarRoot>
@@ -212,7 +207,7 @@ function ContactsDashboard() {
                         </div>
                       </TableData>
                       <TableData>{data.email}</TableData>
-                      <TableData className="cursor-pointer text-blue-600 underline">
+                      <TableData className="cursor-pointer underline">
                         {data.notes}
                       </TableData>
                       <TableData>{data.organization}</TableData>
@@ -227,33 +222,58 @@ function ContactsDashboard() {
                             <SheetContent className="sm:max-w-xl z-100">
                               <SheetHeader>
                                 <SheetTitle>
-                                  Account Created Successfully
+                                  {idx + 1} of {contacts.length}
                                 </SheetTitle>
-                                <SheetDescription className="mt-1 text-sm">
-                                  Your account has been created successfully.
-                                  You can now login to your account. For more
-                                  information, please contact us.
-                                </SheetDescription>
                               </SheetHeader>
                               <SheetBody>
-                                This is they body of the Sheet, content goes
-                                here.
+                                <div className="w-full flex gap-4 items-center mb-8">
+                                  <AvatarRoot>
+                                    <AvatarImage
+                                      imgUrl={data.image}
+                                      className="w-14 h-14 rounded-lg"
+                                    />
+                                    <AvatarFallback>SW</AvatarFallback>
+                                  </AvatarRoot>
+                                  <div>
+                                    <p>{data.name}</p>
+                                    <small className="text-bold flex gap-1 items-center">
+                                      <StarIcon
+                                        className="w-4 h-4"
+                                        fill="yellow"
+                                      />{" "}
+                                      4/5 | {data.profession}
+                                    </small>
+                                  </div>
+                                </div>
+
+                                {new Array(5).fill(undefined).map((_, idx) => {
+                                  return (
+                                    <div
+                                      key={idx}
+                                      className="relative flex flex-col gap-2 p-4 border-l-4 border-blue-200"
+                                    >
+                                      <h4 className="text-gray-600 text-sm">
+                                        Campaign sent by Hugo Felix | Jun 23 at
+                                        16:00
+                                      </h4>
+                                      <p className="text-sm">
+                                        Revolution in cosmos: Galileo new
+                                        product to transform space missions
+                                      </p>
+                                      <small className="text-gray-600">
+                                        To: {data.email}
+                                      </small>
+                                      <Button
+                                        variant="secondary"
+                                        className="text-sm w-full md:w-1/3 cursor-pointer"
+                                      >
+                                        Send follow-up email
+                                      </Button>
+                                      <MegaphoneIcon className="absolute -top-3 -left-3 p-1 bg-blue-200 rounded-full text-blue-800" />
+                                    </div>
+                                  );
+                                })}
                               </SheetBody>
-                              <SheetFooter className="mt-6">
-                                <SheetClose asChild>
-                                  <Button
-                                    className="mt-2 w-full sm:mt-0 sm:w-fit"
-                                    variant="secondary"
-                                  >
-                                    Go back
-                                  </Button>
-                                </SheetClose>
-                                <SheetClose asChild>
-                                  <Button className="w-full sm:w-fit">
-                                    Ok, got it!
-                                  </Button>
-                                </SheetClose>
-                              </SheetFooter>
                             </SheetContent>
                           </Sheet>
                         </div>
